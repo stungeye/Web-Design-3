@@ -372,29 +372,6 @@ code {
   max-width: 100%;
 }
 
-.demo-placeholder {
-  background: var(--color-surface);
-  border: 1px dashed var(--color-accent);
-  border-radius: var(--radius-medium);
-  margin-block: var(--space-6);
-  padding: var(--space-6);
-}
-
-.demo-placeholder__label {
-  color: var(--color-accent-strong);
-  font-size: 0.8rem;
-  font-weight: 800;
-  letter-spacing: 0;
-  margin-block-end: var(--space-1);
-  text-transform: uppercase;
-}
-
-.demo-placeholder__title {
-  font-size: 1.25rem;
-  font-weight: 800;
-  margin-block-end: var(--space-2);
-}
-
 .slide-page .page-shell {
   min-height: 100svh;
   padding: 0;
@@ -492,12 +469,32 @@ code {
 }
 
 .slide .callout,
-.slide .demo-placeholder {
+.slide .grid-explorer,
+.slide .semantic-structure-demo {
   margin-block: var(--space-6);
 }
 
-.slide .demo-placeholder p {
-  font-size: 1.05rem;
+.slide .grid-explorer,
+.slide .semantic-structure-demo {
+  font-size: 1rem;
+}
+
+.standalone-demo {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.standalone-demo__header {
+  max-width: 48rem;
+}
+
+.standalone-demo__eyebrow {
+  color: var(--color-accent-strong);
+  font-size: 0.875rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  margin-block-end: var(--space-2);
+  text-transform: uppercase;
 }
 
 .slide-status {

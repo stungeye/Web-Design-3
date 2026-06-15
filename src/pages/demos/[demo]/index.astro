@@ -1,0 +1,33 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { getDemo, listDemos } from "../../../lib/demoRegistry.js";
+
+export function getStaticPaths() {
+  return listDemos().map((demo) => ({
+    params: { demo: demo.name },
+    props: { demoName: demo.name },
+  }));
+}
+
+const demo = getDemo(Astro.props.demoName);
+const DemoComponent = demo.component;
+---
+
+<BaseLayout title={`${demo.title} demo | Sliders`}>
+  <a class="skip-link" href="#demo-content">Skip to demo</a>
+
+  <nav class="module-breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Course index</a>
+    <span aria-hidden="true">/</span>
+    <span>Demos</span>
+  </nav>
+
+  <article id="demo-content" class="standalone-demo" aria-labelledby="standalone-demo-title">
+    <header class="standalone-demo__header">
+      <p class="standalone-demo__eyebrow">Standalone demo</p>
+      <h1 id="standalone-demo-title">{demo.title}</h1>
+    </header>
+
+    <DemoComponent />
+  </article>
+</BaseLayout>

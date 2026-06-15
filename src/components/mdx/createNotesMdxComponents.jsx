@@ -1,4 +1,5 @@
 import { createHeadingIdSlugger, slugifyHeadingText } from "../../lib/headingIds.js";
+import { createDemoMdxComponents } from "../../lib/demoRegistry.js";
 import { notesMdxComponents } from "./MdxComponents.jsx";
 
 export function createNotesMdxComponents() {
@@ -6,6 +7,7 @@ export function createNotesMdxComponents() {
 
   return {
     ...notesMdxComponents,
+    ...createDemoMdxComponents(),
     h2({ children, ...props }) {
       const headingText = extractText(children);
       const id = props.id ?? h2Slugger.slug(headingText);
@@ -16,26 +18,7 @@ export function createNotesMdxComponents() {
         </h2>
       );
     },
-    GridExplorer() {
-      return <DemoPlaceholder name="Grid Explorer" />;
-    },
-    SemanticStructureDemo() {
-      return <DemoPlaceholder name="Semantic Structure Demo" />;
-    },
   };
-}
-
-export function DemoPlaceholder({ name }) {
-  return (
-    <div className="demo-placeholder" role="group" aria-label={`${name} demo`}>
-      <p className="demo-placeholder__label">Interactive demo</p>
-      <p className="demo-placeholder__title">{name}</p>
-      <p>
-        This demo placeholder keeps the module readable until the demo registry
-        and interactive component implementation land in later phases.
-      </p>
-    </div>
-  );
 }
 
 function extractText(value) {

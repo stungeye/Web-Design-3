@@ -291,7 +291,7 @@ src/content/units/
 - Keyboard navigation works without visible controls.
 - Slides use a readable light theme suitable for classroom projection.
 
-## Phase 8: Demo Registration And Demo Routes
+## Phase 8: Demo Registration And Demo Routes (Implemented)
 
 ### Goals
 
