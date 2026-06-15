@@ -177,7 +177,7 @@ src/content/units/
 - Notes and slides share components where appropriate.
 - Notes-only behavior is controlled by rendering context, not author duplication.
 
-## Phase 5: Module Parsing And Slide Segmentation
+## Phase 5: Module Parsing And Slide Segmentation (Implemented)
 
 ### Goals
 
