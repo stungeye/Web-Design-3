@@ -1,3 +1,5 @@
+import { useId } from "react";
+
 const calloutTypes = {
   note: "Note:",
   warning: "Warning:",
@@ -6,11 +8,18 @@ const calloutTypes = {
 };
 
 function Callout({ children, type }) {
+  const labelId = useId();
   const label = calloutTypes[type];
 
   return (
-    <aside className={`callout callout--${type}`}>
-      <p className="callout__label">{label}</p>
+    <aside
+      aria-labelledby={labelId}
+      className={`callout callout--${type}`}
+      role="note"
+    >
+      <p className="callout__label" id={labelId}>
+        {label}
+      </p>
       <div className="callout__body">{children}</div>
     </aside>
   );
@@ -33,7 +42,11 @@ export function Wait({ children }) {
 }
 
 export function Aside({ children }) {
-  return <aside className="notes-aside">{children}</aside>;
+  return (
+    <aside className="notes-aside" aria-label="Additional notes" role="note">
+      {children}
+    </aside>
+  );
 }
 
 function HiddenAside() {

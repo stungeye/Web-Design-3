@@ -1,6 +1,7 @@
 const nextKeys = new Set(["ArrowRight", "ArrowDown", "PageDown"]);
 const previousKeys = new Set(["ArrowLeft", "ArrowUp", "PageUp"]);
-const interactiveSelector = "a, button, input, select, textarea, summary, [contenteditable]";
+const interactiveSelector =
+  'a, button, input, select, textarea, summary, [contenteditable], [role="separator"]';
 
 export function getNextSlideIndexForKey(event, currentIndex, slideCount) {
   const lastIndex = slideCount - 1;
@@ -41,6 +42,7 @@ export function buildSlideSections(sourceElement, documentRef = document) {
 
   deckElement.className = "slide-deck";
   deckElement.id = sourceElement.id;
+  deckElement.tabIndex = -1;
   deckElement.setAttribute("data-slide-deck", "");
 
   headingNodes.forEach((heading, index) => {

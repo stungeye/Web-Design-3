@@ -1,6 +1,6 @@
 .grid-explorer {
   background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  border: var(--border-thin);
   border-radius: var(--radius-medium);
   display: grid;
   gap: var(--space-4);
@@ -21,13 +21,13 @@
 
 .grid-explorer__panel,
 .grid-explorer__stage {
-  border: 1px solid var(--color-border);
+  border: var(--border-thin);
   border-radius: var(--radius-small);
   min-width: 0;
 }
 
 .grid-explorer__panel {
-  background: #ffffff;
+  background: var(--color-surface);
   display: grid;
   gap: var(--space-3);
   padding: var(--space-3);
@@ -79,12 +79,17 @@
 
 .grid-explorer__controls input,
 .grid-explorer__controls select {
-  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  border: var(--border-thin);
   border-radius: var(--radius-small);
   color: var(--color-text);
-  background: #ffffff;
   min-width: 0;
   padding: var(--space-2);
+}
+
+.grid-explorer__controls input:focus-visible,
+.grid-explorer__controls select:focus-visible {
+  border-color: var(--color-focus);
 }
 
 .grid-explorer__controls input[type="range"] {
@@ -156,7 +161,7 @@
 
 .feature-card {
   align-items: center;
-  background: #ffffff;
+  background: var(--color-surface);
   border: 2px solid var(--color-note);
   border-radius: var(--radius-small);
   color: var(--color-text);

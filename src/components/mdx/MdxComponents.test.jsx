@@ -25,6 +25,21 @@ describe("MDX callout components", () => {
     expect(screen.getByText(label)).toBeInTheDocument();
     expect(screen.getByText("Keep this explanation visible.")).toBeInTheDocument();
   });
+
+  it.each([
+    ["Note:", Note],
+    ["Warning:", Warning],
+    ["Best Practice:", Practice],
+    ["Wait For It:", Wait],
+  ])("exposes %s as a named note region", (label, Component) => {
+    render(
+      <Component>
+        <p>Keep this explanation visible.</p>
+      </Component>,
+    );
+
+    expect(screen.getByRole("note", { name: label })).toBeInTheDocument();
+  });
 });
 
 describe("MDX component mappings", () => {
@@ -38,6 +53,7 @@ describe("MDX component mappings", () => {
     );
 
     expect(screen.getByText("Notes-only teaching detail.")).toBeInTheDocument();
+    expect(screen.getByRole("note", { name: "Additional notes" })).toBeInTheDocument();
   });
 
   it("omits Aside content in slide mode", () => {

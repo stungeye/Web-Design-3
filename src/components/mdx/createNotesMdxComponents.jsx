@@ -1,5 +1,5 @@
 import { createHeadingIdSlugger, slugifyHeadingText } from "../../lib/headingIds.js";
-import { createDemoMdxComponents } from "../../lib/demoRegistry.js";
+import { listDemos } from "../../lib/demoRegistry.js";
 import { notesMdxComponents } from "./MdxComponents.jsx";
 
 export function createNotesMdxComponents() {
@@ -7,7 +7,7 @@ export function createNotesMdxComponents() {
 
   return {
     ...notesMdxComponents,
-    ...createDemoMdxComponents(),
+    ...createNotesDemoMdxComponents(),
     h2({ children, ...props }) {
       const headingText = extractText(children);
       const id = props.id ?? h2Slugger.slug(headingText);
@@ -19,6 +19,36 @@ export function createNotesMdxComponents() {
       );
     },
   };
+}
+
+function createNotesDemoMdxComponents() {
+  return Object.fromEntries(
+    listDemos().map((demo) => [
+      demo.name,
+      function NotesDemo(props) {
+        const DemoComponent = demo.component;
+
+        return (
+          <figure className="notes-demo">
+            <figcaption className="notes-demo__toolbar">
+              <span>{demo.title}</span>
+              <a
+                aria-label={`Open ${demo.title} full screen in a new tab`}
+                className="notes-demo__link"
+                href={demo.routePath}
+                rel="noreferrer noopener"
+                target="_blank"
+              >
+                <span>Full screen</span>
+                <span className="notes-demo__link-note">(new tab)</span>
+              </a>
+            </figcaption>
+            <DemoComponent {...props} />
+          </figure>
+        );
+      },
+    ]),
+  );
 }
 
 function extractText(value) {

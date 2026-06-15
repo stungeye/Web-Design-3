@@ -22,7 +22,12 @@ const DemoComponent = demo.component;
     <span>Demos</span>
   </nav>
 
-  <article id="demo-content" class="standalone-demo" aria-labelledby="standalone-demo-title">
+  <article
+    id="demo-content"
+    class="standalone-demo"
+    aria-labelledby="standalone-demo-title"
+    tabindex="-1"
+  >
     <header class="standalone-demo__header">
       <p class="standalone-demo__eyebrow">Standalone demo</p>
       <h1 id="standalone-demo-title">{demo.title}</h1>

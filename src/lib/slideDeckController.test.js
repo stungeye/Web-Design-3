@@ -63,6 +63,7 @@ describe("slide deck setup", () => {
     expect(deck.slides[1]).toHaveTextContent("Nested Heading");
     expect(deck.slides[2]).toHaveTextContent("Template Areas");
     expect(document.querySelector("#slide-content")).toHaveAttribute("data-slide-deck");
+    expect(document.querySelector("#slide-content")).toHaveAttribute("tabindex", "-1");
     expect(document.querySelector("[data-slide-status]")).toHaveTextContent("1 / 3");
     expect(document.querySelector("[data-slide-status]")).toHaveAttribute(
       "aria-label",
@@ -112,6 +113,27 @@ describe("slide deck setup", () => {
     const button = document.querySelector("button");
 
     button.dispatchEvent(
+      new KeyboardEvent("keydown", { key: "ArrowRight", bubbles: true }),
+    );
+
+    expect(deck.activeIndex).toBe(0);
+  });
+
+  it("does not intercept keyboard events from focusable separator controls", () => {
+    document.body.innerHTML = `
+      <main>
+        <div data-slide-source>
+          <h1>Title</h1>
+          <h2>First Section</h2>
+        </div>
+        <div role="separator" tabindex="0">Resize preview area</div>
+      </main>
+    `;
+
+    const deck = setupSlideDeck(document);
+    const separator = document.querySelector('[role="separator"]');
+
+    separator.dispatchEvent(
       new KeyboardEvent("keydown", { key: "ArrowRight", bubbles: true }),
     );
 

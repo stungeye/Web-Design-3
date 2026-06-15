@@ -28,34 +28,34 @@
 .live-code-block .token.prolog,
 .live-code-block .token.doctype,
 .live-code-block .token.cdata {
-  color: #64748b;
+  color: var(--syntax-comment);
 }
 
 .live-code-block .token.tag,
 .live-code-block .token.selector {
-  color: #1d4ed8;
+  color: var(--syntax-blue);
 }
 
 .live-code-block .token.attr-name,
 .live-code-block .token.property {
-  color: #b45309;
+  color: var(--syntax-orange);
 }
 
 .live-code-block .token.attr-value,
 .live-code-block .token.string {
-  color: #15803d;
+  color: var(--syntax-green);
 }
 
 .live-code-block .token.punctuation {
-  color: #475569;
+  color: var(--syntax-slate);
 }
 
 .live-code-block .token.function,
 .live-code-block .token.keyword {
-  color: #7c3aed;
+  color: var(--syntax-purple);
 }
 
 .live-code-block .token.number,
 .live-code-block .token.unit {
-  color: #be123c;
+  color: var(--syntax-red);
 }
