@@ -18,6 +18,8 @@ The phase context file should capture the decisions made, files changed, command
 
 If implementation work changes the plan, project direction, requirements, or important usage instructions, the agent must confirm with the user and then update `README.md`, `SPEC.md`, or this implementation plan as appropriate before closing the phase.
 
+If a dev server was spawned for user testing, be sure to shut it down now.
+
 The final act for an approved phase is to mark the phase (Implemented) in these plans, and add/commit the phase changes to git. The commit should include the implementation work, the phase context file, and any documentation updates required by decisions made during the phase.
 
 ## Guiding Constraints
