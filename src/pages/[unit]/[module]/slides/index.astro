@@ -1,0 +1,71 @@
+---
+import BaseLayout from "../../../../layouts/BaseLayout.astro";
+import { createSlidesMdxComponents } from "../../../../components/mdx/createSlidesMdxComponents.jsx";
+import { getCourseIndex } from "../../../../lib/contentDiscovery.js";
+import { getModuleSlidesData } from "../../../../lib/moduleSlides.js";
+
+type CourseModule = {
+  filePath: string;
+  routePath: string;
+  slug: string;
+  title: string;
+};
+
+type CourseUnit = {
+  modules: CourseModule[];
+  slug: string;
+};
+
+type ModuleContentImport = {
+  default: any;
+};
+
+const moduleContentImports = import.meta.glob("../../../../content/units/**/*.mdx");
+
+export async function getStaticPaths() {
+  const courseIndex = (await getCourseIndex()) as { units: CourseUnit[] };
+
+  return courseIndex.units.flatMap((unit) =>
+    unit.modules.map((module) => ({
+      params: {
+        unit: unit.slug,
+        module: module.slug,
+      },
+      props: { module },
+    })),
+  );
+}
+
+const { module } = Astro.props;
+const moduleImportPath = `../../../../content/units/${Astro.params.unit}/${Astro.params.module}.mdx`;
+const moduleImport = moduleContentImports[moduleImportPath];
+
+if (!moduleImport) {
+  throw new Error(`Unable to import module content for ${module.routePath}slides/`);
+}
+
+const { default: ModuleContent } = (await moduleImport()) as ModuleContentImport;
+const { parsedModule, slideCount } = (await getModuleSlidesData(module)) as {
+  parsedModule: { title: string };
+  slideCount: number;
+};
+const slidesComponents = createSlidesMdxComponents();
+---
+
+<BaseLayout title={`${parsedModule.title} slides | Sliders`} bodyClass="slide-page">
+  <a class="skip-link" href="#slide-content">Skip to slide content</a>
+
+  <div class="slide-shell" data-expected-slide-count={slideCount}>
+    <div id="slide-content" class="slide-source" data-slide-source>
+      <ModuleContent components={slidesComponents} />
+    </div>
+
+    <p class="slide-status" data-slide-status aria-live="polite"></p>
+  </div>
+
+  <script>
+    import { setupSlideDeck } from "../../../../lib/slideDeckController.js";
+
+    setupSlideDeck(document);
+  </script>
+</BaseLayout>

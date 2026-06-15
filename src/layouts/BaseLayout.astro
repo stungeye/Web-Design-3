@@ -1,7 +1,7 @@
 ---
 import "../styles/global.css";
 
-const { title = "Sliders" } = Astro.props;
+const { bodyClass, title = "Sliders" } = Astro.props;
 ---
 
 <!doctype html>
@@ -12,7 +12,7 @@ const { title = "Sliders" } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body>
+  <body class={bodyClass}>
     <main class="page-shell">
       <slot />
     </main>

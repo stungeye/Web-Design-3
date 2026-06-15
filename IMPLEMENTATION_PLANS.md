@@ -249,7 +249,7 @@ src/content/units/
 - `<Aside>` appears immediately after the surrounding slide content it belongs to.
 - Code blocks and local images render correctly.
 
-## Phase 7: Slide View
+## Phase 7: Slide View (Implemented)
 
 ### Goals
 

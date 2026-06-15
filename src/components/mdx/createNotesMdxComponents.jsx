@@ -25,7 +25,7 @@ export function createNotesMdxComponents() {
   };
 }
 
-function DemoPlaceholder({ name }) {
+export function DemoPlaceholder({ name }) {
   return (
     <div className="demo-placeholder" role="group" aria-label={`${name} demo`}>
       <p className="demo-placeholder__label">Interactive demo</p>
