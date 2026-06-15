@@ -1,0 +1,61 @@
+.live-code-block {
+  align-content: start;
+  display: grid;
+  gap: var(--space-2);
+  grid-template-rows: auto minmax(0, auto);
+  margin: 0;
+  min-width: 0;
+}
+
+.live-code-block__label {
+  color: var(--color-text);
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.live-code-block pre {
+  background: var(--color-code-bg);
+  font-size: 0.78rem;
+  line-height: 1.45;
+  margin: 0;
+  max-height: 15rem;
+  overflow: auto;
+  padding: var(--space-3);
+}
+
+.live-code-block .token.comment,
+.live-code-block .token.prolog,
+.live-code-block .token.doctype,
+.live-code-block .token.cdata {
+  color: #64748b;
+}
+
+.live-code-block .token.tag,
+.live-code-block .token.selector {
+  color: #1d4ed8;
+}
+
+.live-code-block .token.attr-name,
+.live-code-block .token.property {
+  color: #b45309;
+}
+
+.live-code-block .token.attr-value,
+.live-code-block .token.string {
+  color: #15803d;
+}
+
+.live-code-block .token.punctuation {
+  color: #475569;
+}
+
+.live-code-block .token.function,
+.live-code-block .token.keyword {
+  color: #7c3aed;
+}
+
+.live-code-block .token.number,
+.live-code-block .token.unit {
+  color: #be123c;
+}

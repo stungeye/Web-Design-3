@@ -16,5 +16,8 @@ const { bodyClass, title = "Sliders" } = Astro.props;
     <main class="page-shell">
       <slot />
     </main>
+    <script>
+      import "../lib/demoClientEntrypoint.js";
+    </script>
   </body>
 </html>
