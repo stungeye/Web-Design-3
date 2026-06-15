@@ -71,7 +71,7 @@ src/
 - MDX pages can render Astro and React components.
 - The project has a clear place for content, routes, shared components, demo components, and parsing utilities.
 
-## Phase 2: Sample Content And Content Discovery
+## Phase 2: Sample Content And Content Discovery (Implemented)
 
 ### Goals
 

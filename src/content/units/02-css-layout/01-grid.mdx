@@ -1,0 +1,49 @@
+# CSS Grid Track Sizing
+
+CSS Grid lets us describe rows and columns directly. Track sizing is the vocabulary we use to decide which parts of a layout stay fixed, which parts grow, and how available space is shared.
+
+<Wait>
+The `fr` unit does not mean a percentage. It distributes leftover space after fixed, intrinsic, and gap sizes are accounted for.
+</Wait>
+
+## Defining A Grid
+
+A grid container creates a layout context for its direct children. The simplest useful grid starts by naming columns with `grid-template-columns`.
+
+```html
+<section class="feature-grid">
+  <article>Navigation</article>
+  <article>Main content</article>
+  <article>Related links</article>
+</section>
+```
+
+```css
+.feature-grid {
+  display: grid;
+  grid-template-columns: 16rem minmax(0, 1fr) 12rem;
+  gap: 1rem;
+}
+```
+
+<Note>
+Only direct children of the grid container become grid items. Nested content keeps its normal layout unless it creates another layout context.
+</Note>
+
+### Intrinsic And Flexible Tracks
+
+Intrinsic sizes come from content. Flexible tracks use remaining space. Combining them lets a layout respect content while still adapting to the viewport.
+
+<Aside>
+This is a good place to resize the browser slowly and ask students which columns are fixed, which are flexible, and which are constrained by content.
+</Aside>
+
+## Exploring Track Changes
+
+Changing one track value can change the whole layout because Grid calculates tracks as a system.
+
+<GridExplorer />
+
+<Practice>
+Use `minmax(0, 1fr)` when a flexible track should be allowed to shrink below its content's minimum width.
+</Practice>

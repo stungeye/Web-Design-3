@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">Simple page regions diagram</title>
+  <desc id="desc">A wireframe showing header, navigation, main content, aside, and footer regions.</desc>
+  <rect width="960" height="540" fill="#f8fafc"/>
+  <rect x="96" y="56" width="768" height="428" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="4"/>
+  <rect x="136" y="96" width="688" height="72" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="3"/>
+  <text x="480" y="141" fill="#1e3a8a" font-family="Arial, sans-serif" font-size="26" font-weight="700" text-anchor="middle">header</text>
+  <rect x="136" y="188" width="688" height="56" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="3"/>
+  <text x="480" y="224" fill="#14532d" font-family="Arial, sans-serif" font-size="24" font-weight="700" text-anchor="middle">nav</text>
+  <rect x="136" y="264" width="440" height="140" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="3"/>
+  <text x="356" y="343" fill="#78350f" font-family="Arial, sans-serif" font-size="26" font-weight="700" text-anchor="middle">main</text>
+  <rect x="596" y="264" width="228" height="140" rx="10" fill="#fae8ff" stroke="#c026d3" stroke-width="3"/>
+  <text x="710" y="343" fill="#701a75" font-family="Arial, sans-serif" font-size="26" font-weight="700" text-anchor="middle">aside</text>
+  <rect x="136" y="424" width="688" height="36" rx="10" fill="#e2e8f0" stroke="#64748b" stroke-width="3"/>
+  <text x="480" y="450" fill="#334155" font-family="Arial, sans-serif" font-size="20" font-weight="700" text-anchor="middle">footer</text>
+</svg>

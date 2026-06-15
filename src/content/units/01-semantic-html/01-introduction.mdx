@@ -1,0 +1,49 @@
+# Semantic HTML Foundations
+
+Semantic HTML uses the meaning of elements to describe the structure and purpose of content. It gives browsers, assistive technologies, search tools, and future maintainers a clearer map of the page.
+
+<Note>
+Start with the element that best describes the content, then add classes only when styling needs them.
+</Note>
+
+![Simple page regions diagram](./images/page-regions.svg)
+
+## Meaning Before Appearance
+
+HTML should describe what the content is before CSS describes how it looks. A heading should be a heading because it introduces a section, not because it happens to be large.
+
+```html
+<article>
+  <h2>Course Announcement</h2>
+  <p>Project checkpoints are posted on the course site.</p>
+</article>
+```
+
+<Practice>
+Use native elements first. Reach for generic `<div>` and `<span>` elements only when no meaningful element fits.
+</Practice>
+
+### Common Semantic Elements
+
+Elements like `<main>`, `<nav>`, `<article>`, `<section>`, and `<aside>` help name the major parts of a document. They do not replace a clear heading structure.
+
+<Aside>
+When reviewing student work, ask learners to explain why they chose each landmark. The explanation often reveals whether the markup is structural or decorative.
+</Aside>
+
+## Landmarks And Page Regions
+
+Landmarks provide quick navigation points for many assistive technology users. A page normally has one primary `<main>` region and may include navigation, complementary, and footer regions.
+
+```css
+main {
+  max-width: 70ch;
+  margin-inline: auto;
+}
+```
+
+<Warning>
+Do not add landmarks just to make the markup look more advanced. Extra unlabeled landmarks can make navigation more confusing.
+</Warning>
+
+<SemanticStructureDemo />
