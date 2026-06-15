@@ -213,7 +213,7 @@ src/content/units/
 - Slide segmentation follows the spec exactly.
 - Errors are deterministic and useful during authoring.
 
-## Phase 6: Notes View
+## Phase 6: Notes View (Implemented)
 
 ### Goals
 

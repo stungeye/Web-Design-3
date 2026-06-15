@@ -1,0 +1,91 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { createNotesMdxComponents } from "../../../components/mdx/createNotesMdxComponents.jsx";
+import { getCourseIndex } from "../../../lib/contentDiscovery.js";
+import { getModuleNotesData } from "../../../lib/moduleNotes.js";
+
+type CourseModule = {
+  filePath: string;
+  routePath: string;
+  slug: string;
+  title: string;
+};
+
+type CourseUnit = {
+  modules: CourseModule[];
+  slug: string;
+  title: string;
+};
+
+type ModuleContentImport = {
+  default: any;
+};
+
+type TocEntry = {
+  id: string;
+  title: string;
+};
+
+const moduleContentImports = import.meta.glob("../../../content/units/**/*.mdx");
+
+export async function getStaticPaths() {
+  const courseIndex = (await getCourseIndex()) as { units: CourseUnit[] };
+
+  return courseIndex.units.flatMap((unit) =>
+    unit.modules.map((module) => ({
+      params: {
+        unit: unit.slug,
+        module: module.slug,
+      },
+      props: {
+        unitTitle: unit.title,
+        module,
+      },
+    })),
+  );
+}
+
+const { unitTitle, module } = Astro.props;
+const moduleImportPath = `../../../content/units/${Astro.params.unit}/${Astro.params.module}.mdx`;
+const moduleImport = moduleContentImports[moduleImportPath];
+
+if (!moduleImport) {
+  throw new Error(`Unable to import module content for ${module.routePath}`);
+}
+
+const { default: ModuleContent } = (await moduleImport()) as ModuleContentImport;
+const { parsedModule, tableOfContents } = (await getModuleNotesData(module)) as {
+  parsedModule: { title: string };
+  tableOfContents: TocEntry[];
+};
+const notesComponents = createNotesMdxComponents();
+---
+
+<BaseLayout title={`${parsedModule.title} | Sliders`}>
+  <a class="skip-link" href="#module-content">Skip to module content</a>
+
+  <nav class="module-breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Course index</a>
+    <span aria-hidden="true">/</span>
+    <span>{unitTitle}</span>
+  </nav>
+
+  <div class="module-notes-layout">
+    <aside class="module-toc" aria-labelledby="module-toc-title">
+      <h2 id="module-toc-title">Contents</h2>
+      <ol>
+        {
+          tableOfContents.map((section) => (
+            <li>
+              <a href={`#${section.id}`}>{section.title}</a>
+            </li>
+          ))
+        }
+      </ol>
+    </aside>
+
+    <article id="module-content" class="module-notes">
+      <ModuleContent components={notesComponents} />
+    </article>
+  </div>
+</BaseLayout>
