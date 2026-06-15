@@ -145,7 +145,7 @@ src/content/units/
 - Each module title links to its notes route.
 - Unit and module order match folder and file prefixes.
 
-## Phase 4: MDX Component System
+## Phase 4: MDX Component System (Implemented)
 
 ### Goals
 
