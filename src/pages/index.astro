@@ -18,9 +18,22 @@ const units: CourseIndexUnit[] = courseIndex.units;
 ---
 
 <BaseLayout title={`${siteMetadata.siteTitle} Course Index`}>
+  <script is:inline>
+    (() => {
+      const params = new URLSearchParams(window.location.search);
+      const isInstructorMode = params.has("instructor");
+
+      if (isInstructorMode) {
+        document.documentElement.dataset.instructorMode = "true";
+      }
+    })();
+  </script>
+
   <section class="course-index" aria-labelledby="course-index-title">
     <header class="course-index__header">
-      <p class="course-index__eyebrow">{siteMetadata.courseLabel}</p>
+      <p class="course-index__eyebrow">
+        <a href="?instructor=1" data-instructor-link>{siteMetadata.courseLabel}</a>
+      </p>
       <h1 id="course-index-title">{siteMetadata.siteTitle}</h1>
       <p class="course-index__intro">{siteMetadata.siteDescription}</p>
     </header>
@@ -39,9 +52,18 @@ const units: CourseIndexUnit[] = courseIndex.units;
             <ol class="course-index__module-list">
               {unit.modules.map((module) => (
                 <li class="course-index__module">
-                  <a class="course-index__module-link" href={toSitePath(module.routePath)}>
-                    <span class="course-index__module-title">{module.title}</span>
-                  </a>
+                  <span class="course-index__module-content">
+                    <a class="course-index__module-link" href={toSitePath(module.routePath)}>
+                      <span class="course-index__module-title">{module.title}</span>
+                    </a>
+                    <a
+                      class="course-index__slide-link"
+                      href={toSitePath(`${module.routePath}slides/`)}
+                      aria-label={`Slides for ${module.title}`}
+                    >
+                      Slides
+                    </a>
+                  </span>
                 </li>
               ))}
             </ol>
