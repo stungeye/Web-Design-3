@@ -1,49 +1,278 @@
-# Semantic HTML Foundations
+# Structure Content With Semantic HTML
 
-Semantic HTML uses the meaning of elements to describe the structure and purpose of content. It gives browsers, assistive technologies, search tools, and future maintainers a clearer map of the page.
+Web Design 3 is about building small professional websites that are planned clearly, built semantically, styled intentionally, tested, and published. The first step is structure: before layout, colour, spacing, or Grid can do useful work, the page needs content that is organized with meaningful HTML.
 
 <Note>
-Start with the element that best describes the content, then add classes only when styling needs them.
+Good layout starts before CSS. If the content has no clear structure, the visual design has to fight the markup instead of styling it.
 </Note>
 
 ![Simple page regions diagram](./images/page-regions.svg)
 
-## Meaning Before Appearance
+## The WD3 Build Process
 
-HTML should describe what the content is before CSS describes how it looks. A heading should be a heading because it introduces a section, not because it happens to be large.
+This course follows a practical sequence. Each assignment asks you to move through the same basic workflow with more independence:
+
+```text
+1. Structure the content.
+2. Style readable defaults.
+3. Create intentional layouts.
+4. Plan responsive behaviour.
+5. Build responsive sections.
+6. Organize the CSS.
+7. Test the site.
+8. Publish a working static version.
+```
+
+Assignment 1 starts this process by asking you to plan the content, page structure, semantic HTML outline, accessibility notes, and desktop visual direction for the brochure website you will build in Assignment 2.
+
+<Practice>
+Treat planning as part of the build. A useful plan reduces decisions later; it does not need to describe every final CSS value.
+</Practice>
+
+### What WD3 Is Responsible For
+
+WD3 focuses on semantic HTML, accessible document structure, readable base CSS, practical Grid and Flexbox layout, fluid responsive design, basic testing, and simple static deployment. It does not try to cover deep SEO, analytics, production hosting infrastructure, advanced design systems, or JavaScript application development.
+
+<Aside>
+A1 does not need final responsive breakpoints, deep screen-reader testing, or a complete CSS system. It should prove that you know what content you are building and what structure it needs.
+</Aside>
+
+## Structure Before Style
+
+HTML describes the meaning and organization of content. CSS describes presentation. When those jobs get mixed together, pages become harder to style, harder to test, and harder for people using assistive technology to navigate.
 
 ```html
 <article>
-  <h2>Course Announcement</h2>
-  <p>Project checkpoints are posted on the course site.</p>
+  <h2>Guided Walking Tours</h2>
+  <p>Join a local guide for a two-hour tour of the historic exchange district.</p>
+  <a href="tours.html">View walking tour times</a>
 </article>
 ```
 
-<Practice>
-Use native elements first. Reach for generic `<div>` and `<span>` elements only when no meaningful element fits.
-</Practice>
+The example works because the element choices match the content:
 
-### Common Semantic Elements
-
-Elements like `<main>`, `<nav>`, `<article>`, `<section>`, and `<aside>` help name the major parts of a document. They do not replace a clear heading structure.
-
-<Aside>
-When reviewing student work, ask learners to explain why they chose each landmark. The explanation often reveals whether the markup is structural or decorative.
-</Aside>
-
-## Landmarks And Page Regions
-
-Landmarks provide quick navigation points for many assistive technology users. A page normally has one primary `<main>` region and may include navigation, complementary, and footer regions.
-
-```css
-main {
-  max-width: 70ch;
-  margin-inline: auto;
-}
-```
+- `<article>` groups a self-contained content item.
+- `<h2>` introduces the item.
+- `<p>` contains paragraph text.
+- `<a>` goes somewhere and says where it goes.
 
 <Warning>
-Do not add landmarks just to make the markup look more advanced. Extra unlabeled landmarks can make navigation more confusing.
+Do not choose headings, lists, or buttons because of how they look in the browser by default. Choose them because they match the content's job.
 </Warning>
 
-<SemanticStructureDemo />
+### Diagnostic Review
+
+Before writing new markup, check whether you can explain the role of each piece of content:
+
+- What is the page about?
+- What content is global to the site?
+- What content is unique to this page?
+- What is the main content?
+- Which sections need headings?
+- Which links must be understandable out of context?
+- Which images communicate information?
+
+<Aside>
+A useful diagnostic exercise is to remove all CSS and ask whether the page still reads in a logical order. If the unstyled page is confusing, CSS will usually hide the problem instead of solving it.
+</Aside>
+
+## Page Anatomy
+
+Most small brochure pages have a familiar structure: a site header, navigation, one main content area, several sections, and a footer. The exact content changes, but the anatomy gives the page a predictable foundation.
+
+```html
+<body>
+  <header>
+    <a href="index.html">Assiniboine Park</a>
+    <nav aria-label="Main navigation">
+      <ul>
+        <li><a href="index.html">Visit</a></li>
+        <li><a href="conservatory.html">Conservatory</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Plan Your Visit To Assiniboine Park</h1>
+
+    <section>
+      <h2>What To See</h2>
+      <p>Explore gardens, galleries, trails, and seasonal events.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Assiniboine Park Conservancy</p>
+  </footer>
+</body>
+```
+
+<Note>
+A page should usually have one primary `<main>` element. The `main` landmark contains the content that is unique to that page.
+</Note>
+
+### Landmarks
+
+Landmarks identify major regions of a page. They help users jump to important areas quickly, and they help developers name the purpose of each page region.
+
+Common landmarks include:
+
+- `<header>` for introductory site or section content
+- `<nav>` for major navigation links
+- `<main>` for the page's primary content
+- `<aside>` for related or complementary content
+- `<footer>` for closing site or section information
+
+<Warning>
+More landmarks do not automatically mean better accessibility. Use landmarks when they identify real regions, and label repeated navigation areas when the labels would help.
+</Warning>
+
+## Headings Create The Outline
+
+Headings describe the page outline. A user should be able to skim the headings and understand what the page contains before reading every paragraph.
+
+```html
+<h1>Plan Your Visit To Assiniboine Park</h1>
+
+<section>
+  <h2>Hours And Admission</h2>
+  <p>The park is open daily. Some attractions have separate hours.</p>
+</section>
+
+<section>
+  <h2>Featured Attractions</h2>
+  <article>
+    <h3>The Leaf</h3>
+    <p>Visit indoor biomes, gardens, and exhibits.</p>
+  </article>
+  <article>
+    <h3>Leo Mol Sculpture Garden</h3>
+    <p>Walk through outdoor sculptures and landscaped paths.</p>
+  </article>
+</section>
+```
+
+Headings should not skip levels for visual effect. If a section belongs inside an `h2` section, its heading should normally be `h3`, not `h4` or `h5`.
+
+<Practice>
+Write headings as labels for real content sections, not as decoration. If a heading does not introduce content, it probably should not be a heading.
+</Practice>
+
+### Sectioning Content
+
+Use sectioning elements when they clarify the content model:
+
+- Use `<section>` for a thematic part of a page that needs a heading.
+- Use `<article>` for content that could stand alone or be reused.
+- Use `<aside>` for related content that supports the surrounding content.
+- Use `<div>` when you only need a styling hook and no semantic element fits.
+
+<Aside>
+It is easy to overuse `<section>` because it sounds more meaningful than `<div>`. A quick test: if you cannot write a useful heading for the group, it may not need to be a section.
+</Aside>
+
+## Rewrite Messy Markup
+
+The week 1 in-class task is to take messy brochure content and rewrite it as semantic HTML with no CSS. The goal is not visual polish. The goal is a page that reads logically when unstyled.
+
+Start with content like this:
+
+```html
+<div class="top">
+  <div class="big">Visit Gimli</div>
+  <div><span>Home</span> <span>Events</span> <span>Food</span></div>
+</div>
+<div class="section-title">Summer Festivals</div>
+<div>Enjoy music, food, markets, and lakefront events.</div>
+<div class="button">Click here</div>
+```
+
+Rewrite it by asking what each piece of content is:
+
+```html
+<header>
+  <a href="index.html">Visit Gimli</a>
+  <nav aria-label="Main navigation">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="food.html">Food</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <h1>Visit Gimli</h1>
+
+  <section>
+    <h2>Summer Festivals</h2>
+    <p>Enjoy music, food, markets, and lakefront events.</p>
+    <a href="events.html">Explore summer festivals</a>
+  </section>
+</main>
+```
+
+<Wait>
+Future interactive demo slot: this module can later include a "semantic structure explorer" where students compare messy markup against a semantic rewrite and inspect the resulting page outline. For now, the rewrite exercise is done manually in notes and slides.
+</Wait>
+
+## Connect Week 1 To A1
+
+Assignment 1 asks you to choose a real place on Earth and plan a two-page brochure website. Your semantic structure plan should show that you understand the content before you start building the final pages.
+
+For each planned page, identify:
+
+- the page's purpose
+- the main `h1`
+- the major content sections
+- likely landmarks
+- repeated navigation
+- image needs and possible alt text decisions
+- links that need clear destination text
+
+<Note>
+A1 is not a full website build. It is a plan that should make the A2 build easier to start and easier to assess.
+</Note>
+
+### A Useful Semantic Plan
+
+A semantic plan can be a nested list or a simplified HTML skeleton. It should be specific enough that another developer could understand the intended page structure.
+
+```text
+Page 1: Main brochure page
+header
+  site name linking home
+  main navigation
+main
+  h1: Visit Gimli, Manitoba
+  section: Why visit Gimli
+  section: Lakefront activities
+  section: Festivals and events
+  section: Local food and shops
+footer
+  source credits
+  secondary links
+```
+
+<Practice>
+Before moving to Figma or CSS, read the structure plan from top to bottom. If it does not sound like a clear webpage, revise the content organization first.
+</Practice>
+
+## Week 1 Check
+
+By the end of this week, you should be able to:
+
+- explain why semantic HTML comes before layout
+- identify common page landmarks
+- create one logical `h1` for a page
+- organize sections with meaningful `h2` and `h3` headings
+- rewrite generic markup into more meaningful HTML
+- connect semantic planning to Assignment 1
+
+Use this question as a final check:
+
+```text
+If all CSS failed to load, would the page still make sense?
+```
+
+If the answer is yes, the page has a strong foundation for the styling and layout work that comes next.
