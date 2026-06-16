@@ -39,11 +39,9 @@ const units: CourseIndexUnit[] = courseIndex.units;
             <ol class="course-index__module-list">
               {unit.modules.map((module) => (
                 <li class="course-index__module">
-                  <span class="course-index__module-title">{module.title}</span>
-                  <span class="course-index__module-links">
-                    <a href={toSitePath(module.routePath)}>Notes</a>
-                    <a href={toSitePath(`${module.routePath}slides/`)}>Slides</a>
-                  </span>
+                  <a class="course-index__module-link" href={toSitePath(module.routePath)}>
+                    <span class="course-index__module-title">{module.title}</span>
+                  </a>
                 </li>
               ))}
             </ol>
