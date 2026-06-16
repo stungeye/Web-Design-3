@@ -96,7 +96,8 @@ Sliders modules use MDX components for teaching primitives:
 - `<Warning>` renders `Warning:` (Warnings to prepare learners for common bugs and “gotchas”.)
 - `<Practice>` renders `Best Practice:` (For highlighting industry best practices.)
 - `<Wait>` renders `Wait For It:` (Indications that more details will be provided later in the notes or in future modules.)
-- `<Aside>` renders only in notes view, not slide view. Use it for student-facing extra explanation, examples, context, or nuance that would not fit well on a slide. Do not use it for instructor-only notes, author reminders, or behind-the-scenes teaching prompts.
+- `<Aside>` renders only in notes view, not slide view. Use it sparingly for student-facing extra explanation, examples, context, or nuance that is genuinely supplemental. Do not hide lecture-critical content in an aside just to shorten a slide; create another `##` slide or use a visible callout instead. Do not use it for instructor-only notes, author reminders, or behind-the-scenes teaching prompts. Substantial asides should usually start with a plain `###` heading so notes readers can scan the added detail.
+- Keep callout density low. Most slides should have zero or one callout; multiple callouts on one slide should be rare and intentional.
 - Demo components such as `<GridExplorer />` embed interactive teaching tools
 
 Current demos render deterministic initial markup through Astro/MDX and attach
