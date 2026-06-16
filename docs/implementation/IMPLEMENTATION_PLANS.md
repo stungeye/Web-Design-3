@@ -457,7 +457,7 @@ src/demos/GridExplorer/
 - The notes table of contents is custom and based on plain text `##` headings.
 - Slides use browser-side DOM grouping in `src/lib/slideDeckController.js`, guarded by `data-expected-slide-count`.
 - Final visual design tokens and typography live in `src/styles/global.css` as a fixed light theme.
-- React remains the demo component runtime for the MVP, with browser-only behavior attached through registered client enhancement modules.
+- React remains the demo component runtime for deterministic demo markup, with browser-only behavior attached through registered client enhancement modules on demo-capable routes.
 - Malformed content validation covers the required heading rules and demo-reference contract; richer authoring validation is deferred until content needs it.
 
 ## Recommended First Work Slice

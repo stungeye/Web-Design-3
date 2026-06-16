@@ -62,7 +62,7 @@ const { parsedModule, tableOfContents } = (await getModuleNotesData(module)) as 
 const notesComponents = createNotesMdxComponents();
 ---
 
-<BaseLayout title={`${parsedModule.title} | Sliders`}>
+<BaseLayout title={`${parsedModule.title} | Sliders`} loadDemoClient>
   <a class="skip-link" href="#module-content">Skip to module content</a>
 
   <nav class="module-breadcrumb" aria-label="Breadcrumb">

@@ -52,7 +52,7 @@ const { parsedModule, slideCount } = (await getModuleSlidesData(module)) as {
 const slidesComponents = createSlidesMdxComponents();
 ---
 
-<BaseLayout title={`${parsedModule.title} slides | Sliders`} bodyClass="slide-page">
+<BaseLayout title={`${parsedModule.title} slides | Sliders`} bodyClass="slide-page" loadDemoClient>
   <a class="skip-link" href="#slide-content">Skip to slide content</a>
 
   <div class="slide-shell" data-expected-slide-count={slideCount}>

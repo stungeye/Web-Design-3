@@ -14,7 +14,7 @@ const demo = getDemo(Astro.props.demoName);
 const DemoComponent = demo.component;
 ---
 
-<BaseLayout title={`${demo.title} demo | Sliders`}>
+<BaseLayout title={`${demo.title} demo | Sliders`} loadDemoClient>
   <a class="skip-link" href="#demo-content">Skip to demo</a>
 
   <nav class="module-breadcrumb" aria-label="Breadcrumb">

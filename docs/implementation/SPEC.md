@@ -460,7 +460,8 @@ The MVP resolved the original implementation questions as follows:
 - Slide pages emit `data-expected-slide-count`; the slide controller checks the rendered slide count against parser metadata and fails clearly if they diverge.
 - Demo registration is explicit in `src/lib/demoRegistry.js`.
 - Demo references are validated at build time against teaching primitives and registered simple PascalCase demo names.
-- Current demos render deterministic initial markup and use `src/lib/demoClientEntrypoint.js` for browser-only progressive enhancement.
+- Current demos render deterministic initial markup and use `src/lib/demoClientEntrypoint.js` for browser-only progressive enhancement on demo-capable routes.
+- The demo client entrypoint dynamically imports a demo enhancer only when its matching `data-*` root is present.
 - The table of contents is custom, generated from plain text `##` headings, and rendered as part of the notes route.
 - The theme uses fixed light design tokens in `src/styles/global.css`.
 - React remains the demo component runtime for the MVP.

@@ -1,7 +1,8 @@
 # Demo Agent Guide
 
 This guide is for future agents adding interactive teaching demos like `GridExplorer`.
-It reflects the demo architecture implemented through Phase 8 and Phase 9 in
+It reflects the demo architecture implemented through Phase 9 and refined in
+refactoring Phase C in
 `docs/implementation/IMPLEMENTATION_PLANS.md` and the current `GridExplorer`
 implementation.
 
@@ -12,6 +13,7 @@ Before adding or changing a demo, read these files:
 - `src/lib/demoRegistry.js`
 - `src/lib/demoClientEntrypoint.js`
 - `src/demos/GridExplorer/GridExplorer.jsx`
+- `src/demos/GridExplorer/gridExplorerModel.js`
 - `src/demos/GridExplorer/gridExplorerClient.js`
 
 `GridExplorer` is the reference implementation. Follow its conventions unless
@@ -38,9 +40,14 @@ The important demo decisions already made are:
   unless a route intentionally hydrates them.
 - Browser interaction for the current `GridExplorer` production path is attached
   by `src/lib/demoClientEntrypoint.js` and
-  `src/demos/GridExplorer/gridExplorerClient.js`.
+  `src/demos/GridExplorer/gridExplorerClient.js`. The entrypoint is loaded only
+  on demo-capable routes and dynamically imports an enhancer only when its
+  `data-*` root exists.
 - `GridExplorer` is the pattern for future full-featured demos, but it is not a
   framework.
+- `GridExplorer` shares deterministic teaching data and generated-code helpers
+  through a small local model module instead of duplicating that logic in the
+  component and client enhancer.
 - Demos should generally combine controls, visual output, and generated code
   panes.
 - Controls and code usually belong on the left or before the visual output; the
@@ -70,8 +77,10 @@ The flow is intentionally explicit:
 4. Notes and slides render the same registered component.
 5. `src/pages/demos/[demo]/index.astro` creates standalone demo test pages from
    the registry.
-6. `src/lib/demoClientEntrypoint.js` attaches registered browser-only
-   progressive enhancement after the page loads.
+6. Demo-capable routes pass `loadDemoClient` to `BaseLayout`.
+7. `src/lib/demoClientEntrypoint.js` attaches registered browser-only
+   progressive enhancement after the page loads, dynamically importing only
+   enhancers whose root elements are present.
 
 Keep this explicit model. Do not introduce auto-discovery, a demo framework, or
 a new registry system unless the user asks for that broader change.
@@ -85,6 +94,7 @@ src/demos/NewDemo/
   NewDemo.jsx
   NewDemo.css
   NewDemo.test.jsx
+  newDemoModel.js           optional, for shared pure data/code helpers
   newDemoClient.js          optional, only for browser-only behavior
   newDemoClient.test.js     optional, when a client module exists
 ```
@@ -95,7 +105,7 @@ Then update:
   - import the React component
   - add `{ name: "NewDemo", title: "New Demo", component: NewDemo }`
 - `src/lib/demoClientEntrypoint.js`
-  - import and call the setup function if the demo has browser-only behavior
+  - add a selector and dynamic loader if the demo has browser-only behavior
 - an MDX module under `src/content/units/...`
   - embed the demo as `<NewDemo />` where the lesson needs it
 
@@ -123,8 +133,8 @@ Follow these conventions:
   teaching reason to collapse them.
 
 For demos with generated code, mirror `GridExplorer`: build the code strings in
-plain helper functions, pass them to `LiveCodeBlock`, and test the visible code
-output.
+plain helper functions in a local model module, pass them to `LiveCodeBlock`,
+and test the visible code output.
 
 ## Client Enhancement Pattern
 
@@ -151,7 +161,8 @@ export function setupNewDemo(root = document) {
 }
 ```
 
-Then call it from `setupRegisteredDemos()` in `src/lib/demoClientEntrypoint.js`.
+Then add a selector and dynamic loader to `demoEnhancers` in
+`src/lib/demoClientEntrypoint.js`.
 The setup function must be idempotent because it runs on first load and on
 `astro:page-load`.
 

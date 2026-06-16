@@ -1,10 +1,9 @@
 import { setHighlightedCode } from "../../lib/liveCodeHighlighting.js";
-
-const columnRecipes = {
-  balanced: "repeat(3, minmax(0, 1fr))",
-  sidebar: "minmax(12rem, 18rem) minmax(0, 1fr)",
-  cards: "repeat(auto-fit, minmax(10rem, 1fr))",
-};
+import {
+  buildCssCode,
+  formatRem,
+  getColumnRecipeValue,
+} from "./gridExplorerModel.js";
 
 const minimumControlsWidth = 220;
 const minimumPreviewWidth = 192;
@@ -86,7 +85,7 @@ function updateDemo(demo) {
     return;
   }
 
-  const columns = columnRecipes[columnsControl.value] || columnRecipes.balanced;
+  const columns = getColumnRecipeValue(columnsControl.value);
   const gapRem = formatRem(Number(gapControl.value));
   const alignItems = alignmentControl.value;
   const leadSpans = leadControl.checked;
@@ -161,28 +160,6 @@ function getControlsWidth(demo) {
   }
 
   return Math.min(288, Math.max(minimumControlsWidth, workspace.clientWidth * 0.32));
-}
-
-function formatRem(pxValue) {
-  const remValue = pxValue / 16;
-  return Number.isInteger(remValue) ? `${remValue}rem` : `${remValue.toFixed(2)}rem`;
-}
-
-function buildCssCode({ alignItems, columns, gapRem, leadSpans }) {
-  const leadRule = leadSpans
-    ? `
-
-.feature-card--lead {
-  grid-column: 1 / -1;
-}`
-    : "";
-
-  return `.feature-grid {
-  display: grid;
-  grid-template-columns: ${columns};
-  gap: ${gapRem};
-  align-items: ${alignItems};
-}${leadRule}`;
 }
 
 function clamp(value, minimum, maximum) {

@@ -10,13 +10,27 @@ describe("setupGridExplorerDemos", () => {
     document.querySelector('[data-grid-control="columns"]').dispatchEvent(inputEvent("change"));
     document.querySelector('[data-grid-control="gap"]').value = "32";
     document.querySelector('[data-grid-control="gap"]').dispatchEvent(inputEvent("input"));
+    document.querySelector('[data-grid-control="alignment"]').value = "center";
+    document.querySelector('[data-grid-control="alignment"]').dispatchEvent(inputEvent("change"));
+    document.querySelector('[data-grid-control="lead"]').checked = false;
+    document.querySelector('[data-grid-control="lead"]').dispatchEvent(inputEvent("change"));
 
     const cssCode = document.querySelector('[data-grid-code="css"]');
+    const preview = document.querySelector(".grid-explorer__preview");
+    const leadCard = document.querySelector('[data-grid-card="lead"]');
 
     expect(cssCode.textContent).toContain("repeat(auto-fit, minmax(10rem, 1fr))");
     expect(cssCode.textContent).toContain("gap: 2rem;");
+    expect(cssCode.textContent).toContain("align-items: center;");
+    expect(cssCode.textContent).not.toContain("grid-column: 1 / -1;");
     expect([...cssCode.querySelectorAll(".token.property")].map((token) => token.textContent))
       .toContain("grid-template-columns");
+    expect(preview.style.getPropertyValue("--grid-template-columns")).toBe(
+      "repeat(auto-fit, minmax(10rem, 1fr))",
+    );
+    expect(preview.style.getPropertyValue("--grid-gap")).toBe("2rem");
+    expect(preview.style.getPropertyValue("--grid-align-items")).toBe("center");
+    expect(leadCard).not.toHaveAttribute("data-lead-spans");
   });
 
   it("lets keyboard users adjust the preview split", () => {

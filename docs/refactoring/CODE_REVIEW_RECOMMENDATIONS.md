@@ -314,7 +314,7 @@ The most important correctness issue is accessibility in `SemanticStructureDemo`
 - Address DOC-6 / DOC-7: update `IMPLEMENTATION_PLANS.md` open decisions and stale Phase 5 closeout notes.
 - Address DOC-8 / DOC-9: fix `docs/DEMO_AGENT_GUIDE.md` references and demo-runtime guidance.
 
-### Phase C: Maintainability cleanup
+### Phase C: Maintainability cleanup (Implemented)
 
 - Address HPI-2 / SC-1 / BE-6 / AST-4: decide the Grid Explorer runtime model and remove the misleading half of the current split.
 - Address HPI-7 / SC-2: extract shared Grid Explorer pure helpers/data into a local model module.
@@ -341,6 +341,8 @@ docs\refactoring\PHASE-C.md
 ```
 
 The phase context file should capture the decisions made, files changed, commands run, tests or checks performed, and known limitations.
+
+The README.md may need to be updated to stay aligned with the changes made during this phase.
 
 The final act for an approved phase is to mark the phase (Implemented) in these plans, and add/commit the phase changes to git. The commit should include the refactoring/repair work and the phase context file.
 

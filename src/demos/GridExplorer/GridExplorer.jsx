@@ -1,38 +1,21 @@
-import { useId, useState } from "react";
+import { useId } from "react";
 import LiveCodeBlock from "../../components/LiveCodeBlock.jsx";
 import "./GridExplorer.css";
-
-const columnRecipes = {
-  balanced: {
-    label: "Three equal columns",
-    value: "repeat(3, minmax(0, 1fr))",
-  },
-  sidebar: {
-    label: "Sidebar and fluid content",
-    value: "minmax(12rem, 18rem) minmax(0, 1fr)",
-  },
-  cards: {
-    label: "Responsive card tracks",
-    value: "repeat(auto-fit, minmax(10rem, 1fr))",
-  },
-};
-
-const previewItems = [
-  { className: "feature-card feature-card--lead", label: "Header" },
-  { className: "feature-card", label: "Navigation" },
-  { className: "feature-card", label: "Main content" },
-  { className: "feature-card", label: "Related links" },
-  { className: "feature-card", label: "Footer" },
-];
+import {
+  alignmentOptions,
+  buildCssCode,
+  buildHtmlCode,
+  columnRecipes,
+  defaultGridExplorerState,
+  formatRem,
+  getColumnRecipeValue,
+  previewItems,
+} from "./gridExplorerModel.js";
 
 export default function GridExplorer() {
   const idBase = useId();
-  const [columnRecipe, setColumnRecipe] = useState("balanced");
-  const [gap, setGap] = useState(16);
-  const [alignItems, setAlignItems] = useState("stretch");
-  const [leadSpans, setLeadSpans] = useState(true);
-
-  const columns = columnRecipes[columnRecipe].value;
+  const { alignItems, columnRecipe, gap, leadSpans } = defaultGridExplorerState;
+  const columns = getColumnRecipeValue(columnRecipe);
   const gapRem = formatRem(gap);
   const htmlCode = buildHtmlCode();
   const cssCode = buildCssCode({ alignItems, columns, gapRem, leadSpans });
@@ -52,8 +35,7 @@ export default function GridExplorer() {
               <select
                 id={`${idBase}-columns`}
                 data-grid-control="columns"
-                value={columnRecipe}
-                onChange={(event) => setColumnRecipe(event.target.value)}
+                defaultValue={columnRecipe}
               >
                 {Object.entries(columnRecipes).map(([recipe, definition]) => (
                   <option key={recipe} value={recipe}>
@@ -76,8 +58,7 @@ export default function GridExplorer() {
                 min="0"
                 max="32"
                 step="4"
-                value={gap}
-                onChange={(event) => setGap(Number(event.target.value))}
+                defaultValue={gap}
               />
             </label>
 
@@ -86,12 +67,13 @@ export default function GridExplorer() {
               <select
                 id={`${idBase}-alignment`}
                 data-grid-control="alignment"
-                value={alignItems}
-                onChange={(event) => setAlignItems(event.target.value)}
+                defaultValue={alignItems}
               >
-                <option value="stretch">Stretch</option>
-                <option value="start">Start</option>
-                <option value="center">Center</option>
+                {alignmentOptions.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
               </select>
             </label>
 
@@ -100,8 +82,7 @@ export default function GridExplorer() {
                 id={`${idBase}-lead`}
                 data-grid-control="lead"
                 type="checkbox"
-                checked={leadSpans}
-                onChange={(event) => setLeadSpans(event.target.checked)}
+                defaultChecked={leadSpans}
               />
               <span>Header spans all columns</span>
             </label>
@@ -135,8 +116,8 @@ export default function GridExplorer() {
             {previewItems.map((item) => (
               <article
                 className={item.className}
-                data-grid-card={item.label === "Header" ? "lead" : undefined}
-                data-lead-spans={item.label === "Header" && leadSpans ? "true" : undefined}
+                data-grid-card={item.lead ? "lead" : undefined}
+                data-lead-spans={item.lead && leadSpans ? "true" : undefined}
                 key={item.label}
               >
                 {item.label}
@@ -162,36 +143,4 @@ export default function GridExplorer() {
       </div>
     </section>
   );
-}
-
-function formatRem(pxValue) {
-  const remValue = pxValue / 16;
-  return Number.isInteger(remValue) ? `${remValue}rem` : `${remValue.toFixed(2)}rem`;
-}
-
-function buildHtmlCode() {
-  return `<section class="feature-grid">
-  <article class="feature-card feature-card--lead">Header</article>
-  <article class="feature-card">Navigation</article>
-  <article class="feature-card">Main content</article>
-  <article class="feature-card">Related links</article>
-  <article class="feature-card">Footer</article>
-</section>`;
-}
-
-function buildCssCode({ alignItems, columns, gapRem, leadSpans }) {
-  const leadRule = leadSpans
-    ? `
-
-.feature-card--lead {
-  grid-column: 1 / -1;
-}`
-    : "";
-
-  return `.feature-grid {
-  display: grid;
-  grid-template-columns: ${columns};
-  gap: ${gapRem};
-  align-items: ${alignItems};
-}${leadRule}`;
 }

@@ -90,7 +90,10 @@ Sliders modules use MDX components for teaching primitives:
 - `<Aside>` renders only in notes view, not slide view
 - Demo components such as `<GridExplorer />` embed interactive teaching tools
 
-Current demos render deterministic initial markup through Astro/MDX and attach any browser behavior through registered client enhancement code.
+Current demos render deterministic initial markup through Astro/MDX and attach
+any browser behavior through registered client enhancement code. Demo client code
+is loaded only on demo-capable routes and each enhancer is imported only when
+its matching demo root exists.
 
 ## Source Layout
 
@@ -108,6 +111,8 @@ src/
     GridExplorer/
       GridExplorer.jsx
       GridExplorer.css
+      gridExplorerModel.js
+      gridExplorerClient.js
 ```
 
 Unit and module ordering should come from numeric folder/file prefixes. Display titles should come from each module's `# H1`.

@@ -1,7 +1,7 @@
 ---
 import "../styles/global.css";
 
-const { bodyClass, title = "Sliders" } = Astro.props;
+const { bodyClass, loadDemoClient = false, title = "Sliders" } = Astro.props;
 ---
 
 <!doctype html>
@@ -16,8 +16,12 @@ const { bodyClass, title = "Sliders" } = Astro.props;
     <main class="page-shell">
       <slot />
     </main>
-    <script>
-      import "../lib/demoClientEntrypoint.js";
-    </script>
+    {
+      loadDemoClient && (
+        <script>
+          import "../lib/demoClientEntrypoint.js";
+        </script>
+      )
+    }
   </body>
 </html>
