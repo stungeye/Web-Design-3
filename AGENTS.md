@@ -6,6 +6,8 @@ The main agent task is adding Web Design 3 modules and interactive demos. Treat 
 
 Use `docs/COURSE_PLAN.md` as the source of truth.
 
+Assignment one and two exist and will not be changed. They can be viewed in the `docs/reference` folder as `A01.html` and `A02.html`. All material in weeks 1 through 6 serve to support these two assignments.
+
 Read `README.md` for MDX authoring rules. Read `docs/DEMO_AGENT_GUIDE.md` before adding or changing the iteractive demo that can be added to course modules.
 
 ## Project Structure & Module Organization
