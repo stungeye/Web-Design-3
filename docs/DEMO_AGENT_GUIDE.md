@@ -101,9 +101,11 @@ src/demos/NewDemo/
 
 Then update:
 
+- `src/lib/demoMetadata.js`
+  - add `{ name: "NewDemo", title: "New Demo" }`
 - `src/lib/demoRegistry.js`
   - import the React component
-  - add `{ name: "NewDemo", title: "New Demo", component: NewDemo }`
+  - connect the metadata entry to `component: NewDemo`
 - `src/lib/demoClientEntrypoint.js`
   - add a selector and dynamic loader if the demo has browser-only behavior
 - an MDX module under `src/content/units/...`
@@ -128,6 +130,8 @@ Follow these conventions:
 - Use CSS custom properties for visual state that CSS should own.
 - Use `LiveCodeBlock` for generated HTML, CSS, or JS panes instead of building
   one-off highlighted code markup.
+- Pass `copyLabel` to `LiveCodeBlock` when a code pane should expose a copy
+  button. The shared live-code client enhancer owns clipboard behavior.
 - Use stable `data-*` attributes for client enhancement hooks.
 - Keep generated code panes visible by default unless the demo has a strong
   teaching reason to collapse them.

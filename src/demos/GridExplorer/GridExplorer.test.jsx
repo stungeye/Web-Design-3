@@ -13,6 +13,8 @@ describe("GridExplorer", () => {
     expect(screen.getByLabelText("Item alignment")).toHaveValue("stretch");
     expect(screen.getByLabelText("Header spans all columns")).toBeChecked();
     expect(screen.getByRole("group", { name: "Grid preview" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Copy generated HTML code" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Copy generated CSS code" })).toBeInTheDocument();
     expect(screen.getByRole("separator", { name: "Resize preview area" })).toHaveAttribute(
       "aria-orientation",
       "vertical",

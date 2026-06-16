@@ -30,4 +30,17 @@ describe("LiveCodeBlock", () => {
     expect(document.querySelector(".token.selector")).toHaveTextContent(".feature-grid");
     expect(document.querySelector(".token.property")).toHaveTextContent("display");
   });
+
+  it("renders optional copy controls", () => {
+    render(
+      <LiveCodeBlock
+        label="HTML"
+        language="html"
+        code={"<main>Content</main>"}
+        copyLabel="Copy HTML code"
+      />,
+    );
+
+    expect(screen.getByRole("button", { name: "Copy HTML code" })).toHaveTextContent("Copy");
+  });
 });

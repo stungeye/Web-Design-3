@@ -132,12 +132,14 @@ export default function GridExplorer() {
           label="HTML"
           language="html"
           code={htmlCode}
+          copyLabel="Copy generated HTML code"
           codeProps={{ "data-grid-code": "html" }}
         />
         <LiveCodeBlock
           label="CSS"
           language="css"
           code={cssCode}
+          copyLabel="Copy generated CSS code"
           codeProps={{ "data-grid-code": "css" }}
         />
       </div>

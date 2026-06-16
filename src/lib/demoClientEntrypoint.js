@@ -1,5 +1,12 @@
 const demoEnhancers = [
   {
+    selector: "[data-live-code-copy]",
+    load: async () => {
+      const module = await import("../components/liveCodeBlockClient.js");
+      return module.setupLiveCodeBlocks;
+    },
+  },
+  {
     selector: "[data-grid-explorer]",
     load: async () => {
       const module = await import("../demos/GridExplorer/gridExplorerClient.js");

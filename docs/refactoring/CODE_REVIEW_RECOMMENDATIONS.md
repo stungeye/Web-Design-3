@@ -321,7 +321,7 @@ The most important correctness issue is accessibility in `SemanticStructureDemo`
 - Address HPI-3 / SC-3 / AST-3: conditionally load demo client JavaScript instead of importing Grid Explorer enhancement from every page.
 - Address HPI-9 / SC-6: remove unused Phase 1 scaffold components and tests.
 
-### Phase D: Optional future improvements
+### Phase D: Optional future improvements (Implemented)
 
 - Revisit HPI-5 / BE-3 only if authors need inline markup in `##` headings.
 - Add a small authoring validation command if content grows beyond sample modules.

@@ -79,6 +79,15 @@ The current MVP keeps authoring convention-based:
 - Demo components must be registered in `src/lib/demoRegistry.js` and referenced with simple PascalCase tags such as `<GridExplorer />`.
 - Unknown uppercase MDX component tags fail validation unless they are known teaching primitives or registered demos.
 
+Run the authoring check before publishing content changes:
+
+```text
+npm run validate:authoring
+```
+
+It validates module heading structure, registered MDX demo references, direct
+module file placement, and the plain text `#`/`##` heading convention.
+
 ## Core Components
 
 Sliders modules use MDX components for teaching primitives:

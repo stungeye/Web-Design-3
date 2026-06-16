@@ -63,6 +63,7 @@ describe("setupGridExplorerDemos", () => {
     expect(workspace.style.getPropertyValue("--grid-controls-width")).toBe("708px");
     expect(handle).toHaveAttribute("aria-valuetext", "Preview width about 192 pixels");
   });
+
 });
 
 function createDemoFixture() {
