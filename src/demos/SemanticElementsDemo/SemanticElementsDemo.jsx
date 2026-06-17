@@ -21,7 +21,7 @@ export default function SemanticElementsDemo() {
     >
       <div className="semantic-elements-demo__header">
         <p className="semantic-elements-demo__eyebrow">Semantic element</p>
-        <h3 data-elements-title>{selectedElement.title}</h3>
+        <h3 data-elements-title>{`<${selectedElement.name}>`}</h3>
         <p data-elements-summary>{selectedElement.summary}</p>
       </div>
 

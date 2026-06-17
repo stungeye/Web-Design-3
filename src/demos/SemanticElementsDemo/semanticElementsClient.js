@@ -41,7 +41,7 @@ function updateDemo(demo) {
       % semanticElementExamples.length;
 
   demo.dataset.elementsIndex = String(visibleIndex);
-  demo.querySelector("[data-elements-title]").textContent = element.title;
+  demo.querySelector("[data-elements-title]").textContent = `<${element.name}>`;
   demo.querySelector("[data-elements-summary]").textContent = element.summary;
   demo.querySelector("[data-elements-count]").textContent =
     `${visibleIndex + 1} of ${semanticElementExamples.length}`;

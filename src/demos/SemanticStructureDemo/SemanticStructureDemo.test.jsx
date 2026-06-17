@@ -7,7 +7,10 @@ describe("SemanticStructureDemo", () => {
     const { container } = render(<SemanticStructureDemo />);
 
     expect(screen.getByRole("group", { name: "Semantic structure demo" })).toBeInTheDocument();
-    expect(screen.getByLabelText("Markup version")).toHaveValue("semantic");
+    expect(screen.getByRole("group", { name: "Markup version" }))
+      .toBeInTheDocument();
+    expect(screen.getByRole("radio", { name: "Semantic HTML" })).toBeChecked();
+    expect(screen.getByRole("radio", { name: "Generic markup" })).not.toBeChecked();
     expect(screen.getByRole("button", { name: "Copy Visit Gimli HTML code" }))
       .toBeInTheDocument();
     expect(getCodeBlockContaining("<main>")).toBeInTheDocument();

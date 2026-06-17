@@ -14,7 +14,7 @@ describe("SemanticElementsDemo", () => {
       .toBeInTheDocument();
     expect(screen.getByLabelText("Light styling")).toBeChecked();
     expect(screen.getByText("1 of 10")).toBeInTheDocument();
-    expect(screen.getByText("Details")).toBeInTheDocument();
+    expect(screen.getByText("<details>")).toBeInTheDocument();
     expect(screen.getByText("Are pets allowed?")).toBeInTheDocument();
     expect(screen.getByText(/optional information/))
       .toBeInTheDocument();

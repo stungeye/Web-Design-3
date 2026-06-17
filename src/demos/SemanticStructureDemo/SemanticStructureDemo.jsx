@@ -19,21 +19,6 @@ export default function SemanticStructureDemo() {
       role="group"
       aria-label="Semantic structure demo"
     >
-      <label className="semantic-structure-demo__field" htmlFor={`${idBase}-mode`}>
-        <span>Markup version</span>
-        <select
-          id={`${idBase}-mode`}
-          data-semantic-control="mode"
-          defaultValue={mode}
-        >
-          {Object.entries(semanticStructureModes).map(([modeName, definition]) => (
-            <option key={modeName} value={modeName}>
-              {definition.label}
-            </option>
-          ))}
-        </select>
-      </label>
-
       <LiveCodeBlock
         label="HTML"
         language="html"
@@ -41,6 +26,24 @@ export default function SemanticStructureDemo() {
         copyLabel="Copy Visit Gimli HTML code"
         codeProps={{ "data-semantic-code": "html" }}
       />
+
+      <fieldset className="semantic-structure-demo__fieldset">
+        <legend>Markup version</legend>
+        <div className="semantic-structure-demo__choices">
+          {Object.entries(semanticStructureModes).map(([modeName, definition]) => (
+            <label className="semantic-structure-demo__choice" key={modeName}>
+              <input
+                data-semantic-control="mode"
+                defaultChecked={modeName === mode}
+                name={`${idBase}-mode`}
+                type="radio"
+                value={modeName}
+              />
+              <span>{definition.label}</span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
     </section>
   );
 }

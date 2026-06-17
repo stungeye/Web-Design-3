@@ -1,46 +1,44 @@
-# Structure Content With Semantic HTML
+# The Solid Foundation of Semantic HTML
 
-Web Design 3 is about building small professional websites that are planned clearly, built semantically, styled intentionally, tested, and published.
-
-<Note>
-  Good layout starts before CSS. If the content has no clear structure, the
-  visual design has to fight the markup instead of styling it.
-</Note>
+Web Design 3 is about building small hand-crafted websites that are clearly planned, semantically built, and intentionally styled.
 
 ![Simple page regions diagram](./images/page-regions.svg)
 
-## The WD3 Build Process
+<Note>
+  Good layout starts before CSS. A clear semantic structure will beautifully
+  scaffold your design work.
+</Note>
 
-Each assignment follows the same practical workflow:
+## What Web Design 3 Covers
 
-```text
-1. Structure the content.
-2. Style readable defaults.
-3. Create intentional layouts.
-4. Plan responsive behaviour.
-5. Build responsive sections.
-6. Organize the CSS.
-7. Test the site.
-8. Publish a working static version.
-```
-
-<Practice>Treat planning as part of the build.</Practice>
-
-## What WD3 Covers
-
-WD3 focuses on:
+**Our focus:**
 
 - semantic HTML
 - accessible document structure
 - readable base CSS
 - practical Grid and Flexbox layout
 - fluid responsive design
-- basic testing
-- simple static deployment
+- testing
+- simple static deployment (netlify!)
 
-Not the focus: deep SEO, analytics, production hosting infrastructure, advanced design systems, or JavaScript application development.
+_**Not the focus:** seo, analytics, javascript app dev_
 
-## Assignment 1 Starts The Process
+## Our Build Process Goal
+
+**Full Build Process:**
+
+1. Structure the content.
+2. Mockup the design.
+3. Style readable defaults.
+4. Craft intentional layouts.
+5. Add responsive fluidity.
+6. (re)Organize CSS.
+7. Test the site.
+8. Deploy!
+
+<Practice>Always treat planning as part of the build process.</Practice>
+
+## SNEEK PEEK: Assignment 1
 
 Assignment 1 asks you to plan the brochure website you will build in Assignment 2.
 
@@ -52,12 +50,24 @@ Your plan should include:
 - desktop visual direction
 
 <Note>
-  A1 does not need final responsive breakpoints, deep screen-reader testing, or
-  a complete CSS system. It should prove that you know what content you are
-  building and what structure it needs.
+  A strong A1 will clearly demonstrate an understanding of your content and its
+  required structure.
 </Note>
 
-## Layout Starts as Reading Order
+## Our _Simplified_ A1 & A2 Build Process
+
+**Assignment One:**
+
+1. Structure the content.
+2. Mockup the design.
+
+**Assignment Two:**
+
+1. Style readable defaults.
+2. Craft intentional layouts.
+3. Test the site.
+
+## Information Architecture
 
 Good layout starts as reading order, grouping, and hierarchy.
 
@@ -82,13 +92,30 @@ HTML describes the meaning and organization of content. CSS describes presentati
 ```
 
 <Warning>
-  Do not choose headings, lists, or buttons because of how they look by default.
-  Choose them because they match the content's job.
+  Don't choose headings, lists, or buttons based on how they look by default.
+  Match elements to the content's job.
 </Warning>
+
+## Element Choices Should Match Content
+
+The previous example works because each element has a clear job:
+
+- `<article>` groups a self-contained content item.
+- `<h2>` introduces the item.
+- `<p>` contains paragraph text.
+- `<a>` uses plain language to say where it goes.
+
+```html
+<article>
+  <h2>Guided Walking Tours</h2>
+  <p>Join a local guide for a two-hour tour.</p>
+  <a href="tours.html">View walking tour times</a>
+</article>
+```
 
 ## Diagnostic Questions
 
-Before writing markup, ask:
+Before mockups and markup ask:
 
 - What is the page about?
 - What content is global to the site?
@@ -99,22 +126,8 @@ Before writing markup, ask:
 - Which images communicate information?
 
 <Practice>
-  Remove all CSS and ask whether the page still reads in a logical order.
-</Practice>
-
-## Element Choices Should Match Content
-
-The previous example works because each element has a clear job:
-
-- `<article>` groups a self-contained content item.
-- `<h2>` introduces the item.
-- `<p>` contains paragraph text.
-- `<a>` goes somewhere and says where it goes.
-
-Classes are still important, but they should not replace meaningful elements. A class like `class="button"` can style a link, but it cannot turn non-link text into a real link.
-
-<Practice>
-  Use native elements first. Add classes when styling needs them.
+  Remove all CSS and ask whether a page still reads in a logical order. _In
+  Practice: [CSS Naked Day](https://css-naked-day.org/)_
 </Practice>
 
 ## Page Anatomy
@@ -133,7 +146,7 @@ body
 ```
 
 <Note>
-A page should usually have one primary `<main>` element. The `main` landmark contains the content that is unique to that page.
+A page should usually have one `<main>` element, a landmark for the content unique to that page.
 </Note>
 
 ## Page Anatomy In HTML
@@ -141,8 +154,8 @@ A page should usually have one primary `<main>` element. The `main` landmark con
 ```html
 <body>
   <header>
-    <a href="index.html">Assiniboine Park</a>
-    <nav aria-label="Main navigation">...</nav>
+    <a href="/">Assiniboine Park</a>
+    <nav>...</nav>
   </header>
 
   <main>
@@ -151,25 +164,17 @@ A page should usually have one primary `<main>` element. The `main` landmark con
       <h2>What To See</h2>
       <p>Explore gardens, trails, and events.</p>
     </section>
+    <section>
+      <h2>What To Feel</h2>
+      <p>Explore feelings and sensations.</p>
+      <h3>When To Feel</h3>
+      <p>Any day. Any time.</p>
+    </section>
   </main>
 
   <footer>...</footer>
 </body>
 ```
-
-## Structure Creates Layout Handles
-
-Semantic structure gives CSS meaningful regions to style later.
-
-```html
-<main>
-  <section class="hero">...</section>
-  <section class="card-grid">...</section>
-  <section class="visit-info">...</section>
-</main>
-```
-
-The classes help with presentation, but the structure says what the content is and how the page should be understood.
 
 ## Landmarks
 
@@ -195,7 +200,11 @@ Headings describe the page outline. A user should be able to skim the headings a
 
 <section>
   <h2>Hours And Admission</h2>
-  <p>The park is open daily.</p>
+  <p>The park is open daily, free of charge.</p>
+</section>
+<section>
+  <h2>Frequently Asked Questions</h2>
+  <p>What is the meaning of life?</p>
 </section>
 ```
 
@@ -230,50 +239,13 @@ Use sectioning elements when they clarify the content model:
 - `<section>` for a thematic part of a page that needs a heading
 - `<article>` for content that could stand alone or be reused
 - `<aside>` for related content that supports nearby content
-- `<div>` when you only need a styling hook
+- `<div>` only when you really need a styling hook
 
+<Warning>
 It is easy to overuse `<section>` because it sounds more meaningful than `<div>`. If you cannot write a useful heading for the group, it may not need to be a section.
+</Warning>
 
-## Rewrite Messy Markup
-
-The week 1 activity is to rewrite messy brochure content as semantic HTML with no CSS.
-
-The goal is not visual polish. The goal is a page that reads logically when unstyled.
-
-```html
-<div class="top">
-  <div class="big">Visit Gimli</div>
-  <div><span>Home</span> <span>Events</span></div>
-</div>
-<div class="section-title">Summer Festivals</div>
-<div>Enjoy music, food, markets, and lakefront events.</div>
-<div class="button">Click here</div>
-```
-
-## Semantic Rewrite
-
-Ask what each piece of content is:
-
-```html
-<header>
-  <a href="index.html">Visit Gimli</a>
-  <nav aria-label="Main navigation">
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="events.html">Events</a></li>
-    </ul>
-  </nav>
-</header>
-
-<main>
-  <h1>Visit Gimli</h1>
-  <section>
-    <h2>Summer Festivals</h2>
-    <p>Enjoy music, food, markets, and lakefront events.</p>
-    <a href="events.html">Explore summer festivals</a>
-  </section>
-</main>
-```
+## Messy to Bestie
 
 <SemanticStructureDemo />
 
@@ -281,34 +253,72 @@ Ask what each piece of content is:
 
 Once the page skeleton is clear, choose elements that match specific brochure content.
 
-Common examples:
-
-- FAQs and optional details
-- captioned images or maps
-- dates and times
-- facts, prices, hours, and specifications
-- quoted source material
-- contact information
+There are so many lovely helpful semantic elements to choose from:
 
 <SemanticElementsDemo />
 
-## Connect Week 1 To A1
+## Elements First, Classes Second
 
-For each planned page, identify:
+Classes are still important, but they should not replace meaningful elements.
 
-- the page's purpose
-- the main `h1`
-- the major content sections
-- likely landmarks
-- repeated navigation
-- image needs and possible alt text decisions
-- links that need clear destination text
+```html
+Instead of this:
+<a href="http://glutton-farm.ca" class="button">Visit our Bountiful Archeage</a>
+
+Try this:
+<a href="http://glutton-farm.ca">
+  <button>Visit our Bountiful Archeage</button>
+</a>
+```
+
+<Practice>Use and style native elements before adding classes.</Practice>
+
+## Classes For Variants
+
+```html
+<a href="http://glutton-farm.ca">
+  <button>Visit our Bountiful Archeage</button>
+</a>
+
+<a href="http://glutton-farm.ca">
+  <button class="secondary">Visit our Bountiful Archeage</button>
+</a>
+
+<a href="http://glutton-farm.ca">
+  <button class="call-to-action">Visit our Bountiful Archeage</button>
+</a>
+```
+
+## Styling Structural Variants
+
+Semantic structure gives CSS meaningful regions to style.
+
+```html
+<main>
+  <section class="hero">...</section>
+  <section class="card-grid">...</section>
+  <section class="visit-info">...</section>
+</main>
+```
+
+## Assignment 1 First Steps
+
+1. Look for inspiration!
+2. Pick your target location.
+3. For both planned pages, identify:
+   - the page's purpose
+   - the main `h1`
+   - the major content sections
+   - likely landmarks
+   - repeated navigation
+   - image needs and possible alt text decisions
+   - links that need clear destination text
 
 You are not designing every layout decision yet. You are identifying the structure the future layout will depend on.
 
 <Note>
-  A1 is not a full website build. It is a plan that should make A2 easier to
-  start and assess.
+  Assignment One is a plan that should make Assignment Two easier to start and
+  build.
 </Note>
 
 ## A Useful Semantic Plan
@@ -332,7 +342,7 @@ footer
 ```
 
 <Practice>
-  Before moving to Figma or CSS, read the structure plan from top to bottom.
+  Before moving to Figma, read the structure plan from top to bottom.
 </Practice>
 
 ## Week 1 Check

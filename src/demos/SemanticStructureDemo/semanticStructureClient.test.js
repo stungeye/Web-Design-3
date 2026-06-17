@@ -7,8 +7,9 @@ describe("setupSemanticStructureDemos", () => {
     document.body.innerHTML = createDemoFixture();
     setupSemanticStructureDemos(document);
 
-    document.querySelector('[data-semantic-control="mode"]').value = "generic";
-    document.querySelector('[data-semantic-control="mode"]').dispatchEvent(inputEvent());
+    document.querySelector('[data-semantic-control="mode"][value="generic"]').checked = true;
+    document.querySelector('[data-semantic-control="mode"][value="generic"]')
+      .dispatchEvent(inputEvent());
 
     const htmlCode = document.querySelector('[data-semantic-code="html"]');
 
@@ -24,8 +25,9 @@ describe("setupSemanticStructureDemos", () => {
     setupSemanticStructureDemos(document);
     setupSemanticStructureDemos(document);
 
-    document.querySelector('[data-semantic-control="mode"]').value = "generic";
-    document.querySelector('[data-semantic-control="mode"]').dispatchEvent(changeEvent());
+    document.querySelector('[data-semantic-control="mode"][value="generic"]').checked = true;
+    document.querySelector('[data-semantic-control="mode"][value="generic"]')
+      .dispatchEvent(changeEvent());
 
     expect(document.querySelector('[data-semantic-code="html"]').textContent)
       .toContain('<div class="top">');
@@ -35,10 +37,17 @@ describe("setupSemanticStructureDemos", () => {
 function createDemoFixture() {
   return `
     <section data-semantic-structure-demo>
-      <select data-semantic-control="mode">
-        <option value="semantic" selected>Semantic HTML</option>
-        <option value="generic">Generic markup</option>
-      </select>
+      <fieldset>
+        <legend>Markup version</legend>
+        <label>
+          <input data-semantic-control="mode" name="mode" type="radio" value="semantic" checked>
+          Semantic HTML
+        </label>
+        <label>
+          <input data-semantic-control="mode" name="mode" type="radio" value="generic">
+          Generic markup
+        </label>
+      </fieldset>
       <code data-semantic-code="html">${semanticStructureModes.semantic.htmlCode}</code>
     </section>
   `;

@@ -11,13 +11,13 @@ describe("setupSemanticElementsDemos", () => {
     const previous = document.querySelector('[data-elements-action="previous"]');
 
     expect(demo).toHaveAttribute("data-elements-index", "0");
-    expect(document.querySelector("[data-elements-title]")).toHaveTextContent("Details");
+    expect(document.querySelector("[data-elements-title]")).toHaveTextContent("<details>");
     expect(demo).toHaveAttribute("data-elements-style", "light");
 
     next.click();
 
     expect(demo).toHaveAttribute("data-elements-index", "1");
-    expect(document.querySelector("[data-elements-title]")).toHaveTextContent("Figure");
+    expect(document.querySelector("[data-elements-title]")).toHaveTextContent("<figure>");
     expect(document.querySelector("[data-elements-count]")).toHaveTextContent("2 of 10");
     expect(document.querySelector("[data-elements-preview]")).toHaveTextContent("Gimli Harbour");
     expect(document.querySelector('[data-elements-code="html"]'))
@@ -26,7 +26,7 @@ describe("setupSemanticElementsDemos", () => {
     previous.click();
 
     expect(demo).toHaveAttribute("data-elements-index", "0");
-    expect(document.querySelector("[data-elements-title]")).toHaveTextContent("Details");
+    expect(document.querySelector("[data-elements-title]")).toHaveTextContent("<details>");
   });
 
   it("toggles the preview between light styling and browser defaults", () => {
