@@ -1,0 +1,377 @@
+# Readable Defaults
+
+Semantic HTML gives a page meaning. Base CSS makes that meaning readable, usable, and ready for layout.
+
+This week is about the layer of styling that should happen before grids, cards, hero sections, or polished visual systems.
+
+<Note>
+  Styling starts with readable defaults. If the base page is hard to read, the
+  layout will only make the problem more decorative.
+</Note>
+
+## From Skeleton To Reading Experience
+
+Last week we built the page skeleton:
+
+```text
+body
+  header
+  main
+    h1
+    sections
+  footer
+```
+
+This week we ask a different question:
+
+> If someone had to read this page before the final layout existed, would it already feel polished?
+
+<Practice>
+  Build the base reading experience before building the complex layout.
+</Practice>
+
+## The Default Browser Page Is A Starting Point
+
+Browsers already give HTML some readable behaviour:
+
+- headings are larger than paragraphs and hierarchically sized
+- lists have indentation
+- links are visually distinct
+- buttons can be focused and activated
+- images keep their natural dimensions
+
+Those defaults are useful, but they are not a finished design.
+
+<Warning>
+  A reset or base style should not erase useful behaviour unless you
+  intentionally replace it.
+</Warning>
+
+## A Base Stylesheet Has A Job
+
+A base stylesheet sets the ordinary rules that should be true across the site.
+
+It usually handles:
+
+- box sizing
+- body margin and text rendering
+- default font family, line height, and text colour
+- heading rhythm
+- paragraph and list spacing
+- link and focus styles
+- image and media behaviour
+- simple form and button readability
+
+This layer is not where we solve the full page layout.
+
+## Start With Box Sizing
+
+The first common base rule changes how width and height are calculated.
+
+```css
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+```
+
+With `border-box`, an element's declared width includes its padding and border. This makes layout math easier once Grid and Flexbox enter the project.
+
+<Note>
+  `box-sizing` does not create layout. It makes future layout rules more
+  predictable.
+</Note>
+
+## Body Defaults
+
+The `body` rule controls the first impression of the whole reading experience.
+
+```css
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+  color: #1f2933;
+  background-color: #fffdf8;
+}
+```
+
+These choices are small, but they affect every paragraph, list item, heading, and link on the page.
+
+<Practice>
+  Choose body defaults that make ordinary content pleasant to read before adding
+  section-specific styling.
+</Practice>
+
+## Readable Type
+
+Readable type is not only about choosing a nice font.
+
+Check for:
+
+- a comfortable base font size
+- enough line height for paragraphs
+- headings that clearly introduce content
+- text colour with enough contrast
+- line lengths that do not become exhausting
+
+```css
+main {
+  max-width: 70ch;
+  margin-inline: auto;
+  padding: 2rem;
+}
+```
+
+The `ch` unit can help limit text-heavy content because it is based on the width of the `0` character in the current font.
+
+## Spacing Creates Rhythm
+
+Base spacing should help the reader understand what belongs together.
+
+```css
+h1,
+h2,
+h3 {
+  line-height: 1.1;
+}
+
+p,
+ul,
+ol {
+  margin-block: 0 1rem;
+}
+
+section {
+  margin-block: 3rem;
+}
+```
+
+Spacing is part of meaning. A heading should feel connected to the content it introduces.
+
+<Warning>
+  Random margins create visual noise. Repeated spacing choices create rhythm.
+</Warning>
+
+## Links Need Clear Text And Clear Styling
+
+Accessible links need both meaningful words and visible affordance.
+
+```html
+<a href="hours.html">View visitor hours and admission details</a>
+```
+
+```css
+a {
+  color: #075985;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.16em;
+}
+
+a:hover {
+  color: #0f766e;
+}
+```
+
+Avoid vague link text such as:
+
+- click here
+- read more
+- learn more
+- this page
+
+<Practice>
+  A link should make sense when read away from the paragraph around it.
+</Practice>
+
+## Focus Is Part Of The Design
+
+Keyboard users move through interactive elements using focus.
+
+```css
+:focus-visible {
+  outline: 3px solid #f59e0b;
+  outline-offset: 0.2rem;
+}
+```
+
+Do not remove outlines just because they look unfamiliar.
+
+```css
+/* Avoid this */
+*:focus {
+  outline: none;
+}
+```
+
+<Warning>
+  Removing focus styles can make a page impossible to use without a mouse.
+</Warning>
+
+## Images Need Defaults Too
+
+Images can easily overflow their containers if the base CSS does not constrain them.
+
+```css
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+```
+
+This rule does not decide the final image layout. It makes media safer by default.
+
+<Aside>
+  A future interactive demo could let students toggle image defaults on and off
+  to see how an oversized image can break an otherwise sensible page.
+</Aside>
+
+## Alt Text Is A Content Decision
+
+Alt text explains the purpose of an image for people who cannot see it or when the image does not load.
+
+Good alt text depends on context.
+
+```html
+<img
+  src="the-leaf.jpg"
+  alt="The Leaf's glass roof rising above the surrounding gardens"
+/>
+```
+
+If an image is decorative and adds no useful information, it can use an empty alt attribute.
+
+```html
+<img src="divider-pattern.svg" alt="" />
+```
+
+<Practice>
+  Alt text makes images accessible to folks using screen-readers.
+</Practice>
+
+## Buttons And Links Are Not The Same Job
+
+Use a link when the user goes somewhere.
+
+```html
+<a href="visit.html">Plan your visit</a>
+```
+
+Use a button when the user triggers an action on the current page.
+
+```html
+<button type="button">Show ticket options</button>
+```
+
+They can look visually related, but they should not be swapped just for styling convenience.
+
+## A Small Base Stylesheet
+
+This is a reasonable beginning for a small brochure site:
+
+```css
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+  color: #1f2933;
+  background-color: #fffdf8;
+}
+
+main {
+  max-width: 70ch;
+  margin-inline: auto;
+  padding: 2rem;
+}
+
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: #075985;
+  text-underline-offset: 0.16em;
+}
+
+:focus-visible {
+  outline: 3px solid #f59e0b;
+  outline-offset: 0.2rem;
+}
+```
+
+<Note>
+  This is not a design system. It is a readable starting point that protects the
+  page from the most common early problems.
+</Note>
+
+## Demo Placeholder
+
+Later, this module can include a small interactive base-styles demo.
+
+The demo should let students toggle readable defaults for `body`, text spacing, links, focus, and images so they can compare raw semantic HTML with a safer base stylesheet.
+
+For now, use the code examples in this module as the live-coding path.
+
+## In-Class Base Styling Task
+
+Start with the semantic HTML from last week. Do not change the structure unless you find a real accessibility or content problem.
+
+Apply a small base stylesheet that handles:
+
+- `box-sizing`
+- `body` typography and colour
+- readable heading, paragraph, and list spacing
+- clear link styling
+- visible keyboard focus
+- safe image defaults
+- basic button readability if buttons are present
+
+## Assignment Connection
+
+Assignment 1 asks you to plan accessibility decisions before the build begins.
+
+This week gives you practical language for those notes:
+
+- which images need meaningful alt text
+- which images may be decorative
+- which links need more descriptive text
+- whether the heading order makes sense
+- what base CSS will make the future A2 build readable
+
+<Practice>
+  Accessibility notes are more useful when they describe specific decisions, not
+  general intentions.
+</Practice>
+
+## Week 2 Check
+
+By the end of this week, you should be able to:
+
+- explain why readable defaults come before layout
+- write a minimal base stylesheet for a semantic page
+- preserve useful browser behaviour while improving presentation
+- identify meaningful and decorative images
+- write clearer link text
+- keep keyboard focus visible
+- connect base styling decisions to Assignment 1 and Assignment 2
+
+<Question>
+  Before you add Grid or Flexbox, what default styles would make this page more
+  readable, more accessible, and harder to accidentally break?
+</Question>
