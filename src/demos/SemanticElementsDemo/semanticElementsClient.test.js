@@ -2,6 +2,33 @@ import { describe, expect, it } from "vitest";
 import { setupSemanticElementsDemos } from "./semanticElementsClient.js";
 
 describe("setupSemanticElementsDemos", () => {
+  it("navigates between semantic element examples", () => {
+    document.body.innerHTML = createDemoFixture();
+    setupSemanticElementsDemos(document);
+
+    const demo = document.querySelector("[data-semantic-elements-demo]");
+    const next = document.querySelector('[data-elements-action="next"]');
+    const previous = document.querySelector('[data-elements-action="previous"]');
+
+    expect(demo).toHaveAttribute("data-elements-index", "0");
+    expect(document.querySelector("[data-elements-title]")).toHaveTextContent("Details");
+    expect(demo).toHaveAttribute("data-elements-style", "light");
+
+    next.click();
+
+    expect(demo).toHaveAttribute("data-elements-index", "1");
+    expect(document.querySelector("[data-elements-title]")).toHaveTextContent("Figure");
+    expect(document.querySelector("[data-elements-count]")).toHaveTextContent("2 of 10");
+    expect(document.querySelector("[data-elements-preview]")).toHaveTextContent("Gimli Harbour");
+    expect(document.querySelector('[data-elements-code="html"]'))
+      .toHaveTextContent("<figure>");
+
+    previous.click();
+
+    expect(demo).toHaveAttribute("data-elements-index", "0");
+    expect(document.querySelector("[data-elements-title]")).toHaveTextContent("Details");
+  });
+
   it("toggles the preview between light styling and browser defaults", () => {
     document.body.innerHTML = createDemoFixture();
     setupSemanticElementsDemos(document);
@@ -27,19 +54,24 @@ describe("setupSemanticElementsDemos", () => {
     setupSemanticElementsDemos(document);
     setupSemanticElementsDemos(document);
 
-    const control = document.querySelector('[data-elements-control="light-styling"]');
-    control.checked = false;
-    control.dispatchEvent(inputEvent());
+    document.querySelector('[data-elements-action="next"]').click();
 
     expect(document.querySelector("[data-semantic-elements-demo]"))
-      .toHaveAttribute("data-elements-style", "default");
+      .toHaveAttribute("data-elements-index", "1");
   });
 });
 
 function createDemoFixture() {
   return `
-    <section data-semantic-elements-demo data-elements-style="light">
+    <section data-semantic-elements-demo data-elements-index="0">
+      <h3 data-elements-title></h3>
+      <p data-elements-summary></p>
       <input data-elements-control="light-styling" type="checkbox" checked />
+      <button type="button" data-elements-action="previous">Previous</button>
+      <span data-elements-count></span>
+      <button type="button" data-elements-action="next">Next</button>
+      <div data-elements-preview></div>
+      <code data-elements-code="html"></code>
     </section>
   `;
 }

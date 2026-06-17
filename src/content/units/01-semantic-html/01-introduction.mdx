@@ -3,7 +3,8 @@
 Web Design 3 is about building small professional websites that are planned clearly, built semantically, styled intentionally, tested, and published.
 
 <Note>
-Good layout starts before CSS. If the content has no clear structure, the visual design has to fight the markup instead of styling it.
+  Good layout starts before CSS. If the content has no clear structure, the
+  visual design has to fight the markup instead of styling it.
 </Note>
 
 ![Simple page regions diagram](./images/page-regions.svg)
@@ -23,9 +24,7 @@ Each assignment follows the same practical workflow:
 8. Publish a working static version.
 ```
 
-<Practice>
-Treat planning as part of the build.
-</Practice>
+<Practice>Treat planning as part of the build.</Practice>
 
 ## What WD3 Covers
 
@@ -53,8 +52,22 @@ Your plan should include:
 - desktop visual direction
 
 <Note>
-A1 does not need final responsive breakpoints, deep screen-reader testing, or a complete CSS system. It should prove that you know what content you are building and what structure it needs.
+  A1 does not need final responsive breakpoints, deep screen-reader testing, or
+  a complete CSS system. It should prove that you know what content you are
+  building and what structure it needs.
 </Note>
+
+## Layout Starts as Reading Order
+
+Good layout starts as reading order, grouping, and hierarchy.
+
+Before choosing Grid, Flexbox, spacing, or colours, decide:
+
+- what the page is about
+- what belongs together
+- what order the content should be read in
+- which parts are global site structure
+- which parts are unique page content
 
 ## Structure Before Style
 
@@ -69,23 +82,9 @@ HTML describes the meaning and organization of content. CSS describes presentati
 ```
 
 <Warning>
-Do not choose headings, lists, or buttons because of how they look by default. Choose them because they match the content's job.
+  Do not choose headings, lists, or buttons because of how they look by default.
+  Choose them because they match the content's job.
 </Warning>
-
-## Element Choices Should Match Content
-
-The previous example works because each element has a clear job:
-
-- `<article>` groups a self-contained content item.
-- `<h2>` introduces the item.
-- `<p>` contains paragraph text.
-- `<a>` goes somewhere and says where it goes.
-
-Classes are still important, but they should not replace meaningful elements. A class like `class="button"` can style a link, but it cannot turn non-link text into a real link.
-
-<Practice>
-Use native elements first. Add classes when styling needs them.
-</Practice>
 
 ## Diagnostic Questions
 
@@ -100,7 +99,22 @@ Before writing markup, ask:
 - Which images communicate information?
 
 <Practice>
-Remove all CSS and ask whether the page still reads in a logical order.
+  Remove all CSS and ask whether the page still reads in a logical order.
+</Practice>
+
+## Element Choices Should Match Content
+
+The previous example works because each element has a clear job:
+
+- `<article>` groups a self-contained content item.
+- `<h2>` introduces the item.
+- `<p>` contains paragraph text.
+- `<a>` goes somewhere and says where it goes.
+
+Classes are still important, but they should not replace meaningful elements. A class like `class="button"` can style a link, but it cannot turn non-link text into a real link.
+
+<Practice>
+  Use native elements first. Add classes when styling needs them.
 </Practice>
 
 ## Page Anatomy
@@ -143,6 +157,20 @@ A page should usually have one primary `<main>` element. The `main` landmark con
 </body>
 ```
 
+## Structure Creates Layout Handles
+
+Semantic structure gives CSS meaningful regions to style later.
+
+```html
+<main>
+  <section class="hero">...</section>
+  <section class="card-grid">...</section>
+  <section class="visit-info">...</section>
+</main>
+```
+
+The classes help with presentation, but the structure says what the content is and how the page should be understood.
+
 ## Landmarks
 
 Landmarks identify major page regions:
@@ -154,7 +182,8 @@ Landmarks identify major page regions:
 - `<footer>` for closing site or section information
 
 <Warning>
-More landmarks do not automatically mean better accessibility. Use landmarks when they identify real regions.
+  More landmarks do not automatically mean better accessibility. Use landmarks
+  when they identify real regions.
 </Warning>
 
 ## Headings Create The Outline
@@ -171,7 +200,7 @@ Headings describe the page outline. A user should be able to skim the headings a
 ```
 
 <Practice>
-Write headings as labels for real content sections, not as decoration.
+  Write headings as labels for real content sections, not as decoration.
 </Practice>
 
 ## Nested Headings
@@ -204,89 +233,6 @@ Use sectioning elements when they clarify the content model:
 - `<div>` when you only need a styling hook
 
 It is easy to overuse `<section>` because it sounds more meaningful than `<div>`. If you cannot write a useful heading for the group, it may not need to be a section.
-
-## The Details Element
-
-Use `<details>` and `<summary>` for built-in disclosure widgets.
-
-```html
-<details>
-  <summary>Are pets allowed?</summary>
-  <p>Leashed dogs are welcome on outdoor trails.</p>
-</details>
-```
-
-Good for FAQs, policies, schedules, and optional supporting details.
-
-## The Figure Element
-
-Use `<figure>` when media needs a connected caption.
-
-```html
-<figure>
-  <img src="harbour.jpg" alt="Boats docked in Gimli Harbour">
-  <figcaption>Gimli Harbour is a popular summer walking route.</figcaption>
-</figure>
-```
-
-Good for images, diagrams, charts, maps, and code examples.
-
-## The Time Element
-
-Use `<time>` when a date or time should be machine-readable.
-
-```html
-<p>
-  The market opens
-  <time datetime="2026-07-18T09:00">Saturday at 9 a.m.</time>.
-</p>
-```
-
-The visible text can stay natural while the `datetime` value stays precise.
-
-## Description Lists
-
-Use `<dl>`, `<dt>`, and `<dd>` for name-value information.
-
-```html
-<dl>
-  <dt>Admission</dt>
-  <dd>Free</dd>
-  <dt>Season</dt>
-  <dd>May to September</dd>
-</dl>
-```
-
-Good for facts, specs, hours, prices, credits, and event details.
-
-## Blockquotes
-
-Use `<blockquote>` for quoted material from another source.
-
-```html
-<blockquote>
-  <p>The pier is one of the best places to watch the sunset.</p>
-  <cite>Tourism Gimli Visitor Guide</cite>
-</blockquote>
-```
-
-Use your own paragraph outside the quote to introduce or explain it.
-
-## The Address Element
-
-Use `<address>` for contact information for a person, organization, or page owner.
-
-```html
-<address>
-  Gimli Visitor Information Centre<br>
-  10 Centre Street<br>
-  <a href="mailto:info@example.ca">info@example.ca</a>
-</address>
-```
-
-It is not for every postal address. Use it when the information is contact information.
-
-<SemanticElementsDemo />
 
 ## Rewrite Messy Markup
 
@@ -331,6 +277,21 @@ Ask what each piece of content is:
 
 <SemanticStructureDemo />
 
+## After The Skeleton
+
+Once the page skeleton is clear, choose elements that match specific brochure content.
+
+Common examples:
+
+- FAQs and optional details
+- captioned images or maps
+- dates and times
+- facts, prices, hours, and specifications
+- quoted source material
+- contact information
+
+<SemanticElementsDemo />
+
 ## Connect Week 1 To A1
 
 For each planned page, identify:
@@ -343,8 +304,11 @@ For each planned page, identify:
 - image needs and possible alt text decisions
 - links that need clear destination text
 
+You are not designing every layout decision yet. You are identifying the structure the future layout will depend on.
+
 <Note>
-A1 is not a full website build. It is a plan that should make A2 easier to start and assess.
+  A1 is not a full website build. It is a plan that should make A2 easier to
+  start and assess.
 </Note>
 
 ## A Useful Semantic Plan
@@ -368,7 +332,7 @@ footer
 ```
 
 <Practice>
-Before moving to Figma or CSS, read the structure plan from top to bottom.
+  Before moving to Figma or CSS, read the structure plan from top to bottom.
 </Practice>
 
 ## Week 1 Check
