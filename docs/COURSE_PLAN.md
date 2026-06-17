@@ -406,7 +406,7 @@ Students should understand that good layout starts with good structure.
 - Body defaults
 - Readable type
 - Spacing defaults
-- Images
+- Images and media defaults
 - Links and buttons
 
 ### In-class activity
