@@ -422,6 +422,12 @@ code {
   font-size: 1.05rem;
 }
 
+.module-notes pre,
+.module-notes .callout,
+.module-notes .notes-aside {
+  font-size: 1.05rem;
+}
+
 .module-notes a {
   font-weight: 700;
 }
@@ -564,7 +570,7 @@ code {
 }
 
 .slide pre {
-  font-size: 1rem;
+  font-size: 1.35rem;
   margin-block: var(--space-6);
 }
 
@@ -583,6 +589,11 @@ code {
 .slide .semantic-elements-demo,
 .slide .semantic-structure-demo {
   margin-block: var(--space-6);
+}
+
+.slide .callout {
+  font-size: 1.35rem;
+  line-height: 1.55;
 }
 
 .slide .grid-explorer,
