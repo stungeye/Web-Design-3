@@ -477,6 +477,7 @@ code {
 }
 
 .notes-demo > .grid-explorer,
+.notes-demo > .semantic-elements-demo,
 .notes-demo > .semantic-structure-demo {
   margin-block: 0;
 }
@@ -579,11 +580,13 @@ code {
 
 .slide .callout,
 .slide .grid-explorer,
+.slide .semantic-elements-demo,
 .slide .semantic-structure-demo {
   margin-block: var(--space-6);
 }
 
 .slide .grid-explorer,
+.slide .semantic-elements-demo,
 .slide .semantic-structure-demo {
   font-size: 1rem;
 }

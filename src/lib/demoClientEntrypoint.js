@@ -13,6 +13,20 @@ const demoEnhancers = [
       return module.setupGridExplorerDemos;
     },
   },
+  {
+    selector: "[data-semantic-elements-demo]",
+    load: async () => {
+      const module = await import("../demos/SemanticElementsDemo/semanticElementsClient.js");
+      return module.setupSemanticElementsDemos;
+    },
+  },
+  {
+    selector: "[data-semantic-structure-demo]",
+    load: async () => {
+      const module = await import("../demos/SemanticStructureDemo/semanticStructureClient.js");
+      return module.setupSemanticStructureDemos;
+    },
+  },
 ];
 
 setupRegisteredDemos(document);

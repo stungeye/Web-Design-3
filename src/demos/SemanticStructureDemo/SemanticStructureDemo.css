@@ -1,6 +1,6 @@
 .semantic-structure-demo {
   background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  border: var(--border-thin);
   border-radius: var(--radius-medium);
   display: grid;
   gap: var(--space-4);
@@ -8,43 +8,20 @@
   padding: var(--space-4);
 }
 
-.semantic-structure-demo__page {
-  background: var(--color-code-bg);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-small);
+.semantic-structure-demo__field {
+  color: var(--color-text);
   display: grid;
-  gap: var(--space-2);
-  grid-template-columns: 1fr 1fr;
-  padding: var(--space-3);
+  font-size: 0.9rem;
+  font-weight: 800;
+  gap: var(--space-1);
+  max-width: 18rem;
 }
 
-.semantic-structure-demo__page > * {
-  background: #ffffff;
-  border: 2px solid var(--color-accent);
+.semantic-structure-demo__field select {
+  background: var(--color-surface);
+  border: var(--border-thin);
   border-radius: var(--radius-small);
   color: var(--color-text);
-  font-family: var(--font-mono);
-  font-weight: 800;
-  padding: var(--space-3);
-  text-align: center;
-}
-
-.semantic-structure-demo__page header,
-.semantic-structure-demo__page nav,
-.semantic-structure-demo__page footer {
-  grid-column: 1 / -1;
-}
-
-.semantic-structure-demo__page main {
-  min-height: 7rem;
-}
-
-.semantic-structure-demo__code {
-  margin: 0;
-}
-
-@media (min-width: 60rem) {
-  .semantic-structure-demo {
-    grid-template-columns: minmax(22rem, 1fr) minmax(18rem, 0.85fr);
-  }
+  min-height: 2.5rem;
+  padding: var(--space-2);
 }

@@ -44,6 +44,10 @@ describe("demo registry", () => {
           name: "GridExplorer",
           routePath: "/demos/GridExplorer/",
         }),
+        expect.objectContaining({
+          name: "SemanticElementsDemo",
+          routePath: "/demos/SemanticElementsDemo/",
+        }),
       ]),
     );
   });

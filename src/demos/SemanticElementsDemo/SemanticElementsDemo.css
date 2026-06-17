@@ -1,0 +1,146 @@
+.semantic-elements-demo {
+  background: var(--color-surface);
+  border: var(--border-thin);
+  border-radius: var(--radius-medium);
+  display: grid;
+  gap: var(--space-4);
+  margin-block: var(--space-6);
+  padding: var(--space-4);
+}
+
+.semantic-elements-demo__toggle {
+  align-items: center;
+  color: var(--color-text);
+  display: inline-flex;
+  font-weight: 800;
+  gap: var(--space-2);
+  justify-self: start;
+}
+
+.semantic-elements-demo__toggle input {
+  accent-color: var(--color-accent);
+  inline-size: 1.1rem;
+}
+
+.semantic-elements-demo .visit-card {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.semantic-elements-demo[data-elements-style="light"] .visit-card > * {
+  margin: 0;
+}
+
+.semantic-elements-demo[data-elements-style="light"] .visit-card details,
+.semantic-elements-demo[data-elements-style="light"] .visit-card figure,
+.semantic-elements-demo[data-elements-style="light"] .visit-card dl,
+.semantic-elements-demo[data-elements-style="light"] .visit-card blockquote,
+.semantic-elements-demo[data-elements-style="light"] .visit-card address,
+.semantic-elements-demo[data-elements-style="light"] .visit-card > p {
+  background: var(--color-surface-muted);
+  border: var(--border-thin);
+  border-radius: var(--radius-small);
+  padding: var(--space-3);
+}
+
+.semantic-elements-demo[data-elements-style="light"] .visit-card summary {
+  color: var(--color-accent-strong);
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.semantic-elements-demo[data-elements-style="light"] .visit-card details p {
+  margin-block: var(--space-2) 0;
+}
+
+.semantic-elements-demo[data-elements-style="light"] .visit-card figure {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.semantic-elements-demo__image {
+  align-items: center;
+  aspect-ratio: 16 / 5;
+  background: linear-gradient(135deg, #e0f2fe, #d9f99d);
+  border: var(--border-thin);
+  border-radius: var(--radius-small);
+  color: var(--color-text);
+  display: grid;
+  font-weight: 800;
+  justify-items: center;
+}
+
+.semantic-elements-demo[data-elements-style="light"] .visit-card figcaption,
+.semantic-elements-demo[data-elements-style="light"] .visit-card cite {
+  color: var(--color-muted);
+  font-size: 0.92rem;
+}
+
+.semantic-elements-demo[data-elements-style="light"] .visit-card time {
+  color: var(--color-accent-strong);
+  font-weight: 800;
+}
+
+.semantic-elements-demo[data-elements-style="light"] .visit-card dl {
+  display: grid;
+  gap: var(--space-2) var(--space-4);
+  grid-template-columns: max-content minmax(0, 1fr);
+}
+
+.semantic-elements-demo[data-elements-style="light"] .visit-card dt {
+  font-weight: 800;
+}
+
+.semantic-elements-demo[data-elements-style="light"] .visit-card dd {
+  margin: 0;
+}
+
+.semantic-elements-demo[data-elements-style="light"] .visit-card blockquote {
+  border-left: 0.35rem solid var(--color-accent);
+}
+
+.semantic-elements-demo[data-elements-style="light"] .visit-card blockquote p {
+  margin-block: 0 var(--space-2);
+}
+
+.semantic-elements-demo[data-elements-style="light"] .visit-card address {
+  font-style: normal;
+}
+
+.semantic-elements-demo__code {
+  display: grid;
+  height: 100%;
+  min-width: 0;
+}
+
+.semantic-elements-demo__code .live-code-block {
+  grid-template-rows: auto minmax(0, 1fr);
+  height: 100%;
+}
+
+.semantic-elements-demo__code .live-code-block pre {
+  max-height: none;
+}
+
+@media (min-width: 64rem) {
+  .semantic-elements-demo {
+    align-items: stretch;
+    grid-template-areas:
+      "toggle code"
+      "examples code";
+    grid-template-columns: minmax(20rem, 0.8fr) minmax(24rem, 1fr);
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+
+  .semantic-elements-demo__toggle {
+    grid-area: toggle;
+  }
+
+  .semantic-elements-demo__examples {
+    grid-area: examples;
+  }
+
+  .semantic-elements-demo__code {
+    grid-area: code;
+  }
+}

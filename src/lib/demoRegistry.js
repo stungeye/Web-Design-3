@@ -1,4 +1,5 @@
 import GridExplorer from "../demos/GridExplorer/GridExplorer.jsx";
+import SemanticElementsDemo from "../demos/SemanticElementsDemo/SemanticElementsDemo.jsx";
 import SemanticStructureDemo from "../demos/SemanticStructureDemo/SemanticStructureDemo.jsx";
 import { demoMetadata } from "./demoMetadata.js";
 import { DemoResolutionError } from "./mdxComponentValidation.js";
@@ -7,6 +8,10 @@ const demoDefinitions = Object.freeze([
   {
     ...demoMetadata.find((demo) => demo.name === "GridExplorer"),
     component: GridExplorer,
+  },
+  {
+    ...demoMetadata.find((demo) => demo.name === "SemanticElementsDemo"),
+    component: SemanticElementsDemo,
   },
   {
     ...demoMetadata.find((demo) => demo.name === "SemanticStructureDemo"),

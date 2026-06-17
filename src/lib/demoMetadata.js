@@ -12,6 +12,10 @@ export const demoMetadata = Object.freeze([
     title: "Grid Explorer",
   },
   {
+    name: "SemanticElementsDemo",
+    title: "Semantic Elements Demo",
+  },
+  {
     name: "SemanticStructureDemo",
     title: "Semantic Structure Demo",
   },
