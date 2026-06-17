@@ -1,6 +1,8 @@
 # Readable Defaults
 
-Semantic HTML gives a page meaning. Base CSS makes that meaning readable, usable, and ready for layout.
+Semantic HTML gives a page meaning.
+
+Your "Base" CSS makes a page readable, usable, and ready for layout.
 
 This week is about the layer of styling that should happen before grids, cards, hero sections, or polished visual systems.
 
@@ -22,13 +24,11 @@ body
   footer
 ```
 
-This week we ask a different question:
+Before we move to layout, we build the base reading experience.
 
-> If someone had to read this page before the final layout existed, would it already feel polished?
-
-<Practice>
-  Build the base reading experience before building the complex layout.
-</Practice>
+<Question>
+  What base styles would make for a comfortable reading experience?
+</Question>
 
 ## The Default Browser Page Is A Starting Point
 
@@ -41,11 +41,6 @@ Browsers already give HTML some readable behaviour:
 - images keep their natural dimensions
 
 Those defaults are useful, but they are not a finished design.
-
-<Warning>
-  A reset or base style should not erase useful behaviour unless you
-  intentionally replace it.
-</Warning>
 
 ## A Base Stylesheet Has A Job
 
@@ -63,6 +58,26 @@ It usually handles:
 - simple form and button readability
 
 This layer is not where we solve the full page layout.
+
+<Warning>
+  A reset or base style should not erase useful behaviour unless you
+  intentionally replace it.
+</Warning>
+## Reset Less Than You Replace
+
+Modern CSS resets are useful because they smooth out awkward defaults, not because they remove every browser style.
+
+A good base stylesheet should:
+
+- keep useful semantic behaviour
+- remove defaults that make layout awkward or unpredictable
+- improve readability
+- give media and form controls nicer defaults
+- leave room for the actual design layer
+
+<Practice>
+  Before removing a browser default, decide what better default will replace it.
+</Practice>
 
 ## Start With Box Sizing
 
@@ -83,7 +98,7 @@ With `border-box`, an element's declared width includes its padding and border. 
   predictable.
 </Note>
 
-## Body Defaults
+## Body Defaults And Readable Type
 
 The `body` rule controls the first impression of the whole reading experience.
 
@@ -91,30 +106,90 @@ The `body` rule controls the first impression of the whole reading experience.
 body {
   margin: 0;
   font-family: system-ui, sans-serif;
-  line-height: 1.5;
   color: #1f2933;
   background-color: #fffdf8;
 }
 ```
 
-These choices are small, but they affect every paragraph, list item, heading, and link on the page.
+Readable type is not only about choosing a nice font.
+
+These body choices affect every paragraph, list item, heading, and link on the page:
+
+- `font-family` chooses the voice of the page
+- `color` and `background-color` decide whether the text is easy to see
+- the base font size gives `rem` units their starting point
 
 <Practice>
-  Choose body defaults that make ordinary content pleasant to read before adding
+  Choose body defaults that make content pleasant to read before adding
   section-specific styling.
 </Practice>
 
-## Readable Type
+## The Default Font Size
 
-Readable type is not only about choosing a nice font.
+If you do not set a font size, most browsers use a default of `16px` for ordinary body text.
 
-Check for:
+```css
+body {
+  font-family: system-ui, sans-serif;
+  /* font-size defaults to 16px */
+}
+```
 
-- a comfortable base font size
-- enough line height for paragraphs
-- headings that clearly introduce content
-- text colour with enough contrast
-- line lengths that do not become exhausting
+Leaving the base size alone is often a good starting point. Users can change their browser defaults, and `rem` units will respect that choice.
+
+## Units For Readable Defaults
+
+CSS units describe relationships. Learn what each unit measures before choosing where to use it.
+
+- `px` is a fixed CSS pixel
+- `rem` is relative to the root font size
+- `em` is relative to the current element's font size
+- `ch` is based on the width of the `0` character in the current font
+
+Those relationships make each unit useful for different base-style decisions:
+
+- use `px` for small fixed details like borders and focus outlines
+- use `rem` for spacing and type sizes that should relate to the page's base font size
+- use `em` when a value should scale with the element it belongs to
+- use `ch` for readable line length
+
+```css
+:focus-visible {
+  outline: 3px solid #f59e0b;
+  outline-offset: 0.2rem;
+}
+
+main {
+  max-width: 70ch;
+  padding: 2rem;
+}
+```
+
+<Practice>Pick units based on what the value should respond to.</Practice>
+
+## Form Controls Should Match The Page
+
+Inputs, buttons, textareas, and selects do not always inherit the page's font styles by default.
+
+```css
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+```
+
+This small rule helps form controls and buttons feel like part of the same site instead of a separate browser widget.
+
+<Note>
+  Inheriting the font does not remove the need to further style buttons and
+  forms. It only gives them a better starting point.
+</Note>
+
+## Limit The Reading Measure
+
+The `main` element is a good place to control the readable measure of a simple notes-style page.
 
 ```css
 main {
@@ -124,39 +199,168 @@ main {
 }
 ```
 
+These rules do three different jobs:
+
+- `max-width: 70ch` keeps text lines from becoming too long
+- `margin-inline: auto` centers the content block when there is extra space
+- `padding: 2rem` keeps text away from the viewport edge
+
 The `ch` unit can help limit text-heavy content because it is based on the width of the `0` character in the current font.
+
+<Warning>
+  Do not use one `main` rule as the final layout for every site. It is a
+  readable starting point for simple pages, not a full layout system.
+</Warning>
+
+## Line Height Choices
+
+Different text sizes need different amounts of line height.
+
+```css
+* {
+  line-height: calc(1em + 0.5rem);
+}
+```
+
+This formula combines two useful relationships:
+
+- `1em` follows the current element's font size
+- `0.5rem` adds breathing room based on the root font size
+
+The result is flexible. Smaller text gets enough extra space to read comfortably. Larger headings get less extra space relative to their size, so they stay visually grouped.
+
+If the base font size is `16px`, a `16px` paragraph gets a line height of about `24px`.
+
+<Practice>
+  A calculated line height can replace separate body and heading line-height
+  rules when you want one readable default across the page.
+</Practice>
+
+## Scale The Heading Hierarchy
+
+Browser heading sizes are useful for raw HTML, but a finished site should usually choose its own heading scale.
+
+Most browsers start with heading defaults similar to this:
+
+{/* prettier-ignore */}
+```css
+h1 { font-size: 2em;    }
+h2 { font-size: 1.5em;  }
+h3 { font-size: 1.17em; }
+h4 { font-size: 1em;    }
+h5 { font-size: 0.83em; }
+h6 { font-size: 0.67em; }
+```
+
+These defaults create visible hierarchy, but the lower levels can become smaller than body text. That is not always the most readable choice for a designed page.
+
+You can hand-pick heading sizes:
+
+{/* prettier-ignore */}
+```css
+h1 { font-size: 2.5rem; }
+h2 { font-size: 1.75rem; }
+h3 { font-size: 1.25rem; }
+```
+
+Hand-picked sizes are fine when you have a clear visual reason. Another approach is to choose a type scale, where each heading step grows by the same ratio.
+
+Common scales include:
+
+- Minor Third, `1.200`, subtle
+- Major Third, `1.250`, balanced
+- Perfect Fourth, `1.333`, slightly more dramatic
+- Perfect Fifth, `1.500`, bold
+- Golden Ratio, `1.618`, bolder
+
+## A Balanced Heading Scale
+
+A Major Third scale multiplies each step by `1.25`.
+
+```css
+h1 {
+  font-size: 1.953rem;
+}
+
+h2 {
+  font-size: 1.563rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+```
+
+With a `16px` root font size, this gives approximately:
+
+- `h1`: `31px`
+- `h2`: `25px`
+- `h3`: `20px`
+- body text: `16px`
+
+The exact numbers can change from project to project. The important part is that the scale supports the content outline.
+
+<Practice>
+  Style headings to show hierarchy. Do not choose heading levels because you
+  want a certain visual size.
+</Practice>
 
 ## Spacing Creates Rhythm
 
 Base spacing should help the reader understand what belongs together.
 
 ```css
-h1,
-h2,
-h3 {
-  line-height: 1.1;
-}
-
-p,
-ul,
-ol {
-  margin-block: 0 1rem;
-}
-
-section {
-  margin-block: 3rem;
+section > * + * {
+  margin-block-start: 1rem;
 }
 ```
 
-Spacing is part of meaning. A heading should feel connected to the content it introduces.
+This is often called the owl selector because `* + *` looks a bit like two eyes.
+
+It means:
+
+- find every direct child inside `<main>`
+- skip the first child
+- add space before each following sibling
+
+```html
+<section class="flow">
+  <h2>Hours And Admission</h2>
+  <p>The park is open daily.</p>
+  <p>Special events may require tickets.</p>
+</section>
+```
+
+This lets the parent control the spacing rhythm of its children.
+
+## Spacing Variants
+
+Different content groups can have different rhythms.
+
+```css
+article > * + * {
+  margin-block-start: 1rem;
+}
+
+section > * + * {
+  margin-block-start: 2rem;
+}
+
+main > * + * {
+  margin-block-start: 4rem;
+}
+```
+
+This is usually cleaner than giving every paragraph, list, heading, and section its own bottom margin.
 
 <Warning>
-  Random margins create visual noise. Repeated spacing choices create rhythm.
+  Margins on individual elements can still be useful. The key is to avoid random
+  one-off spacing that fights the page rhythm.
 </Warning>
 
 ## Links Need Clear Text And Clear Styling
 
-Accessible links need both meaningful words and visible affordance.
+Accessible links need both meaningful words and intentional visible affordance.
 
 ```html
 <a href="hours.html">View visitor hours and admission details</a>
@@ -174,16 +378,15 @@ a:hover {
 }
 ```
 
+<Practice>
+  A link should make sense when read away from the text around it.
+</Practice>
+
 Avoid vague link text such as:
 
 - click here
 - read more
 - learn more
-- this page
-
-<Practice>
-  A link should make sense when read away from the paragraph around it.
-</Practice>
 
 ## Focus Is Part Of The Design
 
@@ -216,6 +419,7 @@ Images can easily overflow their containers if the base CSS does not constrain t
 ```css
 img,
 picture,
+canvas,
 svg,
 video {
   display: block;
@@ -274,31 +478,34 @@ They can look visually related, but they should not be swapped just for styling 
 
 This is a reasonable beginning for a small brochure site:
 
+{/* prettier-ignore */}
 ```css
-*,
-*::before,
-*::after {
+*, *::before, *::after {
   box-sizing: border-box;
+}
+
+* {
+  line-height: calc(1em + 0.5rem);
 }
 
 body {
   margin: 0;
   font-family: system-ui, sans-serif;
-  line-height: 1.5;
   color: #1f2933;
   background-color: #fffdf8;
 }
 
-main {
-  max-width: 70ch;
-  margin-inline: auto;
-  padding: 2rem;
+input, button, textarea, select {
+  font: inherit;
 }
 
-img,
-picture,
-svg,
-video {
+/* Minor Third Scale 1.25x */
+h1 { font-size: 1.953rem; }
+h2 { font-size: 1.563rem; }
+h3 { font-size: 1.25rem;  }
+h4 { font-size: 1rem;     }
+
+img, picture, canvas, svg, video {
   display: block;
   max-width: 100%;
   height: auto;
@@ -313,12 +520,19 @@ a {
   outline: 3px solid #f59e0b;
   outline-offset: 0.2rem;
 }
-```
 
-<Note>
-  This is not a design system. It is a readable starting point that protects the
-  page from the most common early problems.
-</Note>
+/* And if we want a very basic layout with vertical rhythm: */
+
+main {
+  max-width: 70ch;
+  margin-inline: auto;
+  padding: 2rem;
+}
+
+main > * + * {
+  margin-block-start: 4rem;
+}
+```
 
 ## Demo Placeholder
 
@@ -336,11 +550,16 @@ Apply a small base stylesheet that handles:
 
 - `box-sizing`
 - `body` typography and colour
-- readable heading, paragraph, and list spacing
+- readable units for type, spacing, and measure
+- readable heading and paragraph line height
+- a clear heading scale based on the base font size
+- parent-controlled spacing rhythm
 - clear link styling
 - visible keyboard focus
 - safe image defaults
 - basic button readability if buttons are present
+- font inheritance for form controls
+- long text that does not overflow its container
 
 ## Assignment Connection
 
@@ -352,12 +571,6 @@ This week gives you practical language for those notes:
 - which images may be decorative
 - which links need more descriptive text
 - whether the heading order makes sense
-- what base CSS will make the future A2 build readable
-
-<Practice>
-  Accessibility notes are more useful when they describe specific decisions, not
-  general intentions.
-</Practice>
 
 ## Week 2 Check
 
@@ -365,7 +578,10 @@ By the end of this week, you should be able to:
 
 - explain why readable defaults come before layout
 - write a minimal base stylesheet for a semantic page
+- choose sensible units for base CSS decisions
 - preserve useful browser behaviour while improving presentation
+- explain the browser's ordinary `16px` default font size
+- create a modest heading scale from the base font size
 - identify meaningful and decorative images
 - write clearer link text
 - keep keyboard focus visible
