@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 import {
   Note,
   Practice,
+  Question,
   Wait,
   Warning,
   notesMdxComponents,
@@ -13,6 +14,7 @@ describe("MDX callout components", () => {
   it.each([
     [Note, "Note:"],
     [Warning, "Warning:"],
+    [Question, "Question To Learn:"],
     [Practice, "Best Practice:"],
     [Wait, "Wait For It:"],
   ])("renders the required visible label", (Component, label) => {
@@ -29,6 +31,7 @@ describe("MDX callout components", () => {
   it.each([
     ["Note:", Note],
     ["Warning:", Warning],
+    ["Question To Learn:", Question],
     ["Best Practice:", Practice],
     ["Wait For It:", Wait],
   ])("exposes %s as a named note region", (label, Component) => {
@@ -69,7 +72,7 @@ describe("MDX component mappings", () => {
     expect(container).toBeEmptyDOMElement();
   });
 
-  it.each(["Note", "Warning", "Practice", "Wait"])(
+  it.each(["Note", "Warning", "Question", "Practice", "Wait"])(
     "shares %s between notes and slides",
     (componentName) => {
       expect(slidesMdxComponents[componentName]).toBe(notesMdxComponents[componentName]);

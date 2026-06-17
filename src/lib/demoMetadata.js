@@ -2,6 +2,7 @@ export const builtInMdxComponentNames = Object.freeze([
   "Aside",
   "Note",
   "Practice",
+  "Question",
   "Wait",
   "Warning",
 ]);

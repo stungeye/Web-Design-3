@@ -12,6 +12,7 @@
   --color-link-hover: #0f766e;
   --color-note: #2563eb;
   --color-warning: #b45309;
+  --color-question: #9333ea;
   --color-practice: #15803d;
   --color-wait: #7c3aed;
   --color-code-bg: #f4f7fa;
@@ -164,6 +165,10 @@ code {
   border-left-color: var(--color-warning);
 }
 
+.callout--question {
+  border-left-color: var(--color-question);
+}
+
 .callout--practice {
   border-left-color: var(--color-practice);
 }
@@ -183,6 +188,10 @@ code {
 
 .callout--warning .callout__label {
   color: var(--color-warning);
+}
+
+.callout--question .callout__label {
+  color: var(--color-question);
 }
 
 .callout--practice .callout__label {

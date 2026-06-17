@@ -3,6 +3,7 @@ import { useId } from "react";
 const calloutTypes = {
   note: "Note:",
   warning: "Warning:",
+  question: "Question To Learn:",
   practice: "Best Practice:",
   wait: "Wait For It:",
 };
@@ -33,6 +34,10 @@ export function Warning({ children }) {
   return <Callout type="warning">{children}</Callout>;
 }
 
+export function Question({ children }) {
+  return <Callout type="question">{children}</Callout>;
+}
+
 export function Practice({ children }) {
   return <Callout type="practice">{children}</Callout>;
 }
@@ -56,6 +61,7 @@ function HiddenAside() {
 const sharedMdxComponents = {
   Note,
   Warning,
+  Question,
   Practice,
   Wait,
 };

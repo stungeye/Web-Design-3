@@ -71,7 +71,7 @@ describe("demo registry", () => {
   it("passes known demos and built-in teaching components", () => {
     expect(() =>
       validateDemoReferences(
-        "# Demo\n\n<Note>Known callout.</Note>\n\n<GridExplorer />\n\n<Aside>Known notes prose.</Aside>",
+        "# Demo\n\n<Note>Known callout.</Note>\n\n<Question>Known learning question.</Question>\n\n<GridExplorer />\n\n<Aside>Known notes prose.</Aside>",
         { filePath: "module.mdx" },
       ),
     ).not.toThrow();
