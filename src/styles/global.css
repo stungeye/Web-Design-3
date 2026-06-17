@@ -393,7 +393,6 @@ code {
 .module-toc a {
   color: var(--color-text);
   display: inline-block;
-  font-weight: 700;
   line-height: 1.35;
   text-decoration-color: var(--color-accent);
   text-decoration-thickness: 0.1em;
