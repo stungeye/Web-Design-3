@@ -49,13 +49,11 @@ A base stylesheet sets the ordinary rules that should be true across the site.
 It usually handles:
 
 - box sizing
-- body margin and text rendering
+- margin reset
 - default font family, line height, and text colour
 - heading rhythm
-- paragraph and list spacing
 - link and focus styles
 - image and media behaviour
-- simple form and button readability
 
 This layer is not where we solve the full page layout.
 
@@ -120,6 +118,7 @@ These body choices affect every paragraph, list item, heading, and link on the p
 
 - `font-family` chooses the voice of the page
 - `color` and `background-color` decide whether the text is easy to see
+- [Test for WCAG text to background constrast ratio compliance](https://webaim.org/resources/contrastchecker/)
 - the base font size gives `rem` units their starting point
 
 <Note>
@@ -187,6 +186,8 @@ This formula combines two useful relationships:
 The result is flexible. Smaller text gets enough extra space to read comfortably. Larger headings get less extra space relative to their size, so they stay visually grouped.
 
 If the base font size is `16px`, a `16px` paragraph gets a line height of about `24px`.
+
+## Calc() Line Height Demo
 
 <LineHeightDemo />
 
@@ -454,6 +455,8 @@ section > * + * {
   margin-block-start: 1.25rem;
 }
 ```
+
+## Base Stylesheet Demo
 
 <BaseStylesheetDemo />
 
