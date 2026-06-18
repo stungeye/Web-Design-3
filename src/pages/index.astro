@@ -53,13 +53,18 @@ const units: CourseIndexUnit[] = courseIndex.units;
               {unit.modules.map((module) => (
                 <li class="course-index__module">
                   <span class="course-index__module-content">
-                    <a class="course-index__module-link" href={toSitePath(module.routePath)}>
+                    <a
+                      class="course-index__module-link"
+                      href={toSitePath(module.routePath)}
+                      data-preserve-instructor
+                    >
                       <span class="course-index__module-title">{module.title}</span>
                     </a>
                     <a
                       class="course-index__slide-link"
                       href={toSitePath(`${module.routePath}slides/`)}
                       aria-label={`Slides for ${module.title}`}
+                      data-preserve-instructor
                     >
                       Slides
                     </a>

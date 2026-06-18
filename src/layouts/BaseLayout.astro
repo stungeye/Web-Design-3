@@ -17,6 +17,11 @@ const { bodyClass, loadDemoClient = false, title = siteMetadata.siteTitle } = As
     <main class="page-shell">
       <slot />
     </main>
+    <script>
+      import { preserveInstructorModeLinks } from "../lib/instructorModeLinks.js";
+
+      preserveInstructorModeLinks(document);
+    </script>
     {
       loadDemoClient && (
         <script>

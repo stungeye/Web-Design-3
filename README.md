@@ -139,6 +139,12 @@ Each module has paired notes and slides views:
 
 Numeric prefixes stay in URLs but do not need to appear in visible titles.
 
+Instructor mode is stored in the URL as `?instructor=1`. The course index uses
+that query parameter to reveal slide links, and the shared layout preserves it
+on links that opt in with `data-preserve-instructor`. Use that attribute for
+links that should keep instructor state while moving between the index, notes,
+slides, and standalone demo pages.
+
 ## Deployment
 
 The site is static and does not require a backend or runtime server. Production

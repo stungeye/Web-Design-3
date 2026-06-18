@@ -36,6 +36,7 @@ function createNotesDemoMdxComponents() {
               <a
                 aria-label={`Open ${demo.title} full screen in a new tab`}
                 className="notes-demo__link"
+                data-preserve-instructor=""
                 href={toSitePath(demo.routePath)}
                 rel="noreferrer noopener"
                 target="_blank"

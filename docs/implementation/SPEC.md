@@ -184,6 +184,13 @@ URLs keep numeric prefixes:
 - `/02-css-layout/01-grid/`
 - `/02-css-layout/01-grid/slides/`
 
+Instructor mode is represented as URL state with `?instructor=1`. Static links
+should not include that query parameter by default. Instead, the shared layout
+runs a small browser enhancer that copies the current `instructor` parameter to
+links marked with `data-preserve-instructor`. Use that opt-in attribute for
+navigation that should keep instructor mode active across the course index,
+notes pages, slide decks, and standalone demo pages.
+
 The course index should list units and module titles. Numeric prefixes do not need to appear as visible text; ordered lists or layout can communicate sequence.
 
 Module `.mdx` files are supported as direct children of each unit folder:
