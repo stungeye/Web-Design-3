@@ -93,6 +93,8 @@ The first common base rule changes how width and height are calculated.
 
 With `border-box`, an element's declared width includes its padding and border. This makes layout math easier once Grid and Flexbox enter the project.
 
+<BoxSizingDemo />
+
 <Note>
   `box-sizing` does not create layout. It makes future layout rules more
   predictable.
@@ -231,6 +233,8 @@ The result is flexible. Smaller text gets enough extra space to read comfortably
 
 If the base font size is `16px`, a `16px` paragraph gets a line height of about `24px`.
 
+<LineHeightDemo />
+
 <Practice>
   A calculated line height can replace separate body and heading line-height
   rules when you want one readable default across the page.
@@ -272,6 +276,8 @@ Common scales include:
 - Perfect Fourth, `1.333`, slightly more dramatic
 - Perfect Fifth, `1.500`, bold
 - Golden Ratio, `1.618`, bolder
+
+<HeadingScaleDemo />
 
 ## A Balanced Heading Scale
 
@@ -534,13 +540,7 @@ main > * + * {
 }
 ```
 
-## Demo Placeholder
-
-Later, this module can include a small interactive base-styles demo.
-
-The demo should let students toggle readable defaults for `body`, text spacing, links, focus, and images so they can compare raw semantic HTML with a safer base stylesheet.
-
-For now, use the code examples in this module as the live-coding path.
+<BaseStylesheetDemo />
 
 ## In-Class Base Styling Task
 

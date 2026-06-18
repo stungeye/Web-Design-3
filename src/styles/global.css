@@ -491,6 +491,10 @@ code {
 }
 
 .notes-demo > .grid-explorer,
+.notes-demo > .base-stylesheet-demo,
+.notes-demo > .box-sizing-demo,
+.notes-demo > .heading-scale-demo,
+.notes-demo > .line-height-demo,
 .notes-demo > .semantic-elements-demo,
 .notes-demo > .semantic-structure-demo {
   margin-block: 0;
@@ -594,6 +598,10 @@ code {
 
 .slide .callout,
 .slide .grid-explorer,
+.slide .base-stylesheet-demo,
+.slide .box-sizing-demo,
+.slide .heading-scale-demo,
+.slide .line-height-demo,
 .slide .semantic-elements-demo,
 .slide .semantic-structure-demo {
   margin-block: var(--space-6);
@@ -605,6 +613,10 @@ code {
 }
 
 .slide .grid-explorer,
+.slide .base-stylesheet-demo,
+.slide .box-sizing-demo,
+.slide .heading-scale-demo,
+.slide .line-height-demo,
 .slide .semantic-elements-demo,
 .slide .semantic-structure-demo {
   font-size: 1rem;

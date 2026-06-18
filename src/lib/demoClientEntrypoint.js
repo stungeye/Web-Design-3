@@ -7,10 +7,38 @@ const demoEnhancers = [
     },
   },
   {
+    selector: "[data-base-stylesheet-demo]",
+    load: async () => {
+      const module = await import("../demos/BaseStylesheetDemo/baseStylesheetClient.js");
+      return module.setupBaseStylesheetDemos;
+    },
+  },
+  {
+    selector: "[data-box-sizing-demo]",
+    load: async () => {
+      const module = await import("../demos/BoxSizingDemo/boxSizingClient.js");
+      return module.setupBoxSizingDemos;
+    },
+  },
+  {
     selector: "[data-grid-explorer]",
     load: async () => {
       const module = await import("../demos/GridExplorer/gridExplorerClient.js");
       return module.setupGridExplorerDemos;
+    },
+  },
+  {
+    selector: "[data-heading-scale-demo]",
+    load: async () => {
+      const module = await import("../demos/HeadingScaleDemo/headingScaleClient.js");
+      return module.setupHeadingScaleDemos;
+    },
+  },
+  {
+    selector: "[data-line-height-demo]",
+    load: async () => {
+      const module = await import("../demos/LineHeightDemo/lineHeightClient.js");
+      return module.setupLineHeightDemos;
     },
   },
   {
