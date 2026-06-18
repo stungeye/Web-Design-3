@@ -36,4 +36,8 @@ export const demoMetadata = Object.freeze([
     name: "SemanticStructureDemo",
     title: "Semantic Structure Demo",
   },
+  {
+    name: "SkeletonReadingDemo",
+    title: "Skeleton Reading Demo",
+  },
 ]);

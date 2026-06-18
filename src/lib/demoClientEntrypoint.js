@@ -55,6 +55,13 @@ const demoEnhancers = [
       return module.setupSemanticStructureDemos;
     },
   },
+  {
+    selector: "[data-skeleton-reading-demo]",
+    load: async () => {
+      const module = await import("../demos/SkeletonReadingDemo/skeletonReadingClient.js");
+      return module.setupSkeletonReadingDemos;
+    },
+  },
 ];
 
 setupRegisteredDemos(document);

@@ -5,6 +5,7 @@ import HeadingScaleDemo from "../demos/HeadingScaleDemo/HeadingScaleDemo.jsx";
 import LineHeightDemo from "../demos/LineHeightDemo/LineHeightDemo.jsx";
 import SemanticElementsDemo from "../demos/SemanticElementsDemo/SemanticElementsDemo.jsx";
 import SemanticStructureDemo from "../demos/SemanticStructureDemo/SemanticStructureDemo.jsx";
+import SkeletonReadingDemo from "../demos/SkeletonReadingDemo/SkeletonReadingDemo.jsx";
 import { demoMetadata } from "./demoMetadata.js";
 import { DemoResolutionError } from "./mdxComponentValidation.js";
 
@@ -36,6 +37,10 @@ const demoDefinitions = Object.freeze([
   {
     ...demoMetadata.find((demo) => demo.name === "SemanticStructureDemo"),
     component: SemanticStructureDemo,
+  },
+  {
+    ...demoMetadata.find((demo) => demo.name === "SkeletonReadingDemo"),
+    component: SkeletonReadingDemo,
   },
 ]);
 

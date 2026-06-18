@@ -496,7 +496,8 @@ code {
 .notes-demo > .heading-scale-demo,
 .notes-demo > .line-height-demo,
 .notes-demo > .semantic-elements-demo,
-.notes-demo > .semantic-structure-demo {
+.notes-demo > .semantic-structure-demo,
+.notes-demo > .skeleton-reading-demo {
   margin-block: 0;
 }
 
@@ -603,7 +604,8 @@ code {
 .slide .heading-scale-demo,
 .slide .line-height-demo,
 .slide .semantic-elements-demo,
-.slide .semantic-structure-demo {
+.slide .semantic-structure-demo,
+.slide .skeleton-reading-demo {
   margin-block: var(--space-6);
 }
 
@@ -618,7 +620,8 @@ code {
 .slide .heading-scale-demo,
 .slide .line-height-demo,
 .slide .semantic-elements-demo,
-.slide .semantic-structure-demo {
+.slide .semantic-structure-demo,
+.slide .skeleton-reading-demo {
   font-size: 1rem;
 }
 
