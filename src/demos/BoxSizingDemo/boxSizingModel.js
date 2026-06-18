@@ -36,11 +36,3 @@ export function buildBoxSizingCss({ borderWidth, boxSizing, padding }) {
   border: ${formatPx(borderWidth)} solid #0f766e;
 }`;
 }
-
-export function buildBoxSizingHtml() {
-  return `<div class="demo-box">
-  <div class="demo-box__content">
-    Content area
-  </div>
-</div>`;
-}

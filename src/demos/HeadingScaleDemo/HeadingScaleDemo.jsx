@@ -8,7 +8,7 @@ import {
   headingScales,
 } from "./headingScaleModel.js";
 
-const headingLevels = ["h1", "h2", "h3", "h4", "h5", "h6"];
+const headingLevels = ["h1", "h2", "h3", "h4"];
 
 export default function HeadingScaleDemo() {
   const idBase = useId();
@@ -25,15 +25,14 @@ export default function HeadingScaleDemo() {
       <div className="heading-scale-demo__stage" role="group" aria-label="Heading scale preview">
         <div className="heading-scale-demo__sample" data-heading-scale-preview>
           {headingLevels.map((level) => {
-            const Heading = level;
             return (
-              <Heading
+              <div
                 key={level}
                 data-heading-scale-level={level}
                 style={{ "--heading-scale-size": selectedScale.sizes[level] }}
               >
                 {level.toUpperCase()} Example
-              </Heading>
+              </div>
             );
           })}
         </div>

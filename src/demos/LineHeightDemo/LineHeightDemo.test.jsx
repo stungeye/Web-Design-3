@@ -11,6 +11,7 @@ describe("LineHeightDemo", () => {
     expect(screen.getByLabelText("line-height: calc(1em + 0.5rem)")).toBeInTheDocument();
     expect(screen.getByRole("group", { name: "Line height preview" })).toBeInTheDocument();
     expect(screen.getByText("Visit The Winter Garden")).toBeInTheDocument();
+    expect(screen.queryByRole("heading")).not.toBeInTheDocument();
     expect(screen.queryByText(/Compare how the paragraph opens up/)).not.toBeInTheDocument();
     expect(getCodeBlockContaining(".reading-sample > *")).toBeInTheDocument();
     expect(getCodeBlockContaining("line-height: 1.5;")).toBeInTheDocument();

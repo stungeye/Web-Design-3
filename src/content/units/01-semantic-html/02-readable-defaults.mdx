@@ -106,7 +106,6 @@ The `body` rule controls the first impression of the whole reading experience.
 
 ```css
 body {
-  margin: 0;
   font-family: system-ui, sans-serif;
   color: #1f2933;
   background-color: #fffdf8;
@@ -121,23 +120,11 @@ These body choices affect every paragraph, list item, heading, and link on the p
 - `color` and `background-color` decide whether the text is easy to see
 - the base font size gives `rem` units their starting point
 
-<Practice>
-  Choose body defaults that make content pleasant to read before adding
-  section-specific styling.
-</Practice>
-
-## The Default Font Size
-
-If you do not set a font size, most browsers use a default of `16px` for ordinary body text.
-
-```css
-body {
-  font-family: system-ui, sans-serif;
-  /* font-size defaults to 16px */
-}
-```
-
-Leaving the base size alone is often a good starting point. Users can change their browser defaults, and `rem` units will respect that choice.
+<Note>
+  If you do not set a font size, most browsers use a default of `16px` for
+  ordinary body text. Users can change their browser defaults, and `rem` units
+  will respect that choice.
+</Note>
 
 ## Units For Readable Defaults
 
@@ -154,40 +141,6 @@ Those relationships make each unit useful for different base-style decisions:
 - use `rem` for spacing and type sizes that should relate to the page's base font size
 - use `em` when a value should scale with the element it belongs to
 - use `ch` for readable line length
-
-```css
-:focus-visible {
-  outline: 3px solid #f59e0b;
-  outline-offset: 0.2rem;
-}
-
-main {
-  max-width: 70ch;
-  padding: 2rem;
-}
-```
-
-<Practice>Pick units based on what the value should respond to.</Practice>
-
-## Form Controls Should Match The Page
-
-Inputs, buttons, textareas, and selects do not always inherit the page's font styles by default.
-
-```css
-input,
-button,
-textarea,
-select {
-  font: inherit;
-}
-```
-
-This small rule helps form controls and buttons feel like part of the same site instead of a separate browser widget.
-
-<Note>
-  Inheriting the font does not remove the need to further style buttons and
-  forms. It only gives them a better starting point.
-</Note>
 
 ## Limit The Reading Measure
 
@@ -244,20 +197,6 @@ If the base font size is `16px`, a `16px` paragraph gets a line height of about 
 
 Browser heading sizes are useful for raw HTML, but a finished site should usually choose its own heading scale.
 
-Most browsers start with heading defaults similar to this:
-
-{/* prettier-ignore */}
-```css
-h1 { font-size: 2em;    }
-h2 { font-size: 1.5em;  }
-h3 { font-size: 1.17em; }
-h4 { font-size: 1em;    }
-h5 { font-size: 0.83em; }
-h6 { font-size: 0.67em; }
-```
-
-These defaults create visible hierarchy, but the lower levels can become smaller than body text. That is not always the most readable choice for a designed page.
-
 You can hand-pick heading sizes:
 
 {/* prettier-ignore */}
@@ -267,7 +206,7 @@ h2 { font-size: 1.75rem; }
 h3 { font-size: 1.25rem; }
 ```
 
-Hand-picked sizes are fine when you have a clear visual reason. Another approach is to choose a type scale, where each heading step grows by the same ratio.
+Another approach is to choose a type scale, where each heading step grows by the same ratio.
 
 Common scales include:
 
@@ -277,39 +216,29 @@ Common scales include:
 - Perfect Fifth, `1.500`, bold
 - Golden Ratio, `1.618`, bolder
 
+## Header Scaling
+
 <HeadingScaleDemo />
 
-## A Balanced Heading Scale
+<Practice>
+  Do not choose heading levels because you want a certain visual size.
+</Practice>
 
-A Major Third scale multiplies each step by `1.25`.
+## Reset Margins Carefully
+
+Browsers give headings, paragraphs, lists, the body, and many other elements their own margins.
+
+If we want the parent element to control vertical rhythm, we can remove those default margins first:
 
 ```css
-h1 {
-  font-size: 1.953rem;
-}
-
-h2 {
-  font-size: 1.563rem;
-}
-
-h3 {
-  font-size: 1.25rem;
+*:not(dialog) {
+  margin: 0;
 }
 ```
 
-With a `16px` root font size, this gives approximately:
+The `:not(dialog)` part is intentional. Native `<dialog>` elements use browser default margins to help position a modal dialog. A broad reset should not accidentally break that useful browser behaviour.
 
-- `h1`: `31px`
-- `h2`: `25px`
-- `h3`: `20px`
-- body text: `16px`
-
-The exact numbers can change from project to project. The important part is that the scale supports the content outline.
-
-<Practice>
-  Style headings to show hierarchy. Do not choose heading levels because you
-  want a certain visual size.
-</Practice>
+After removing the ordinary margins, we add spacing back via the parent.
 
 ## Spacing Creates Rhythm
 
@@ -330,7 +259,7 @@ It means:
 - add space before each following sibling
 
 ```html
-<section class="flow">
+<section>
   <h2>Hours And Admission</h2>
   <p>The park is open daily.</p>
   <p>Special events may require tickets.</p>
@@ -363,7 +292,6 @@ This is usually cleaner than giving every paragraph, list, heading, and section 
   Margins on individual elements can still be useful. The key is to avoid random
   one-off spacing that fights the page rhythm.
 </Warning>
-
 ## Links Need Clear Text And Clear Styling
 
 Accessible links need both meaningful words and intentional visible affordance.
@@ -463,22 +391,6 @@ If an image is decorative and adds no useful information, it can use an empty al
 <Practice>
   Alt text makes images accessible to folks using screen-readers.
 </Practice>
-
-## Buttons And Links Are Not The Same Job
-
-Use a link when the user goes somewhere.
-
-```html
-<a href="visit.html">Plan your visit</a>
-```
-
-Use a button when the user triggers an action on the current page.
-
-```html
-<button type="button">Show ticket options</button>
-```
-
-They can look visually related, but they should not be swapped just for styling convenience.
 
 ## A Small Base Stylesheet
 

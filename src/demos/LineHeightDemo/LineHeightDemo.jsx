@@ -45,7 +45,7 @@ export default function LineHeightDemo() {
             data-line-height-preview
             style={{ "--line-height-demo-value": lineHeight }}
           >
-            <h1>Visit The Winter Garden</h1>
+            <div className="line-height-demo__sample-title">Visit The Winter Garden</div>
             <p>
               The indoor garden stays bright through the colder months, with wide paths,
               quiet seating, and clear signs for visitors.

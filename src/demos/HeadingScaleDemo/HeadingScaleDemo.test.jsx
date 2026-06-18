@@ -9,15 +9,15 @@ describe("HeadingScaleDemo", () => {
     expect(screen.getByRole("group", { name: "Heading scale demo" })).toBeInTheDocument();
     expect(screen.getByLabelText("Heading scale")).toHaveValue("majorThird");
     expect(screen.getByRole("option", { name: "Browser defaults" })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { level: 1, name: "H1 Example" }))
-      .toBeInTheDocument();
-    expect(screen.getByRole("heading", { level: 6, name: "H6 Example" }))
-      .toBeInTheDocument();
+    expect(screen.getByRole("option", { name: "Golden Ratio, 1.618" })).toBeInTheDocument();
+    expect(screen.getByText("H1 Example")).toBeInTheDocument();
+    expect(screen.getByText("H4 Example")).toBeInTheDocument();
+    expect(screen.queryByRole("heading")).not.toBeInTheDocument();
     expect(screen.queryByRole("button", { name: "Copy heading scale HTML code" }))
       .not.toBeInTheDocument();
-    expect(getCodeBlockContaining("h1 { font-size: 3.052rem; }")).toBeInTheDocument();
+    expect(getCodeBlockContaining("h1 { font-size: 1.953rem; }")).toBeInTheDocument();
     expect(container.querySelector('[data-heading-scale-level="h1"]')).toHaveStyle({
-      "--heading-scale-size": "3.052rem",
+      "--heading-scale-size": "1.953rem",
     });
   });
 });

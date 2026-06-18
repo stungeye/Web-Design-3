@@ -45,15 +45,11 @@
   padding: var(--space-4);
 }
 
-.heading-scale-demo__sample h1,
-.heading-scale-demo__sample h2,
-.heading-scale-demo__sample h3,
-.heading-scale-demo__sample h4,
-.heading-scale-demo__sample h5,
-.heading-scale-demo__sample h6 {
+.heading-scale-demo__sample [data-heading-scale-level] {
   border: 0;
   color: var(--color-text);
   font-size: var(--heading-scale-size);
+  font-weight: 800;
   line-height: calc(1em + 0.5rem);
   margin: 0;
   padding: 0;
