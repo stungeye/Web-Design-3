@@ -22,13 +22,47 @@
   padding: var(--space-3);
 }
 
-.heading-scale-demo__field select {
+.heading-scale-demo__field label {
+  font-weight: 800;
+}
+
+.heading-scale-demo__field select,
+.heading-scale-demo__level-buttons button {
   background: var(--color-surface);
   border: var(--border-thin);
   border-radius: var(--radius-small);
   color: var(--color-text);
+}
+
+.heading-scale-demo__field select {
   min-width: 0;
   padding: var(--space-2);
+}
+
+.heading-scale-demo__field select:focus-visible,
+.heading-scale-demo__level-buttons button:focus-visible {
+  outline: 0.2rem solid var(--color-focus);
+  outline-offset: 0.15rem;
+}
+
+.heading-scale-demo__level-buttons {
+  display: grid;
+  gap: var(--space-2);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.heading-scale-demo__level-buttons button {
+  cursor: pointer;
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1;
+  min-height: 2.5rem;
+  padding: var(--space-2);
+}
+
+.heading-scale-demo__level-buttons button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
 }
 
 .heading-scale-demo__stage {

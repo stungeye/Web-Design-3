@@ -4,21 +4,24 @@ import "./HeadingScaleDemo.css";
 import {
   buildHeadingScaleCss,
   defaultHeadingScaleState,
-  getHeadingScale,
+  getHeadingLevels,
+  getHeadingScaleSizes,
   headingScales,
+  maxHeadingLevelCount,
+  minHeadingLevelCount,
 } from "./headingScaleModel.js";
-
-const headingLevels = ["h1", "h2", "h3", "h4"];
 
 export default function HeadingScaleDemo() {
   const idBase = useId();
-  const { scale } = defaultHeadingScaleState;
-  const selectedScale = getHeadingScale(scale);
+  const { levelCount, scale } = defaultHeadingScaleState;
+  const headingLevels = getHeadingLevels(levelCount);
+  const headingSizes = getHeadingScaleSizes(scale, levelCount);
 
   return (
     <section
       className="heading-scale-demo"
       data-heading-scale-demo
+      data-heading-scale-level-count={levelCount}
       role="group"
       aria-label="Heading scale demo"
     >
@@ -29,7 +32,7 @@ export default function HeadingScaleDemo() {
               <div
                 key={level}
                 data-heading-scale-level={level}
-                style={{ "--heading-scale-size": selectedScale.sizes[level] }}
+                style={{ "--heading-scale-size": headingSizes[level] }}
               >
                 {level.toUpperCase()} Example
               </div>
@@ -43,14 +46,14 @@ export default function HeadingScaleDemo() {
           <LiveCodeBlock
             label="CSS"
             language="css"
-            code={buildHeadingScaleCss(scale)}
+            code={buildHeadingScaleCss(scale, levelCount)}
             copyLabel="Copy heading scale CSS code"
             codeProps={{ "data-heading-scale-code": "css" }}
           />
         </div>
 
-        <label className="heading-scale-demo__field" htmlFor={`${idBase}-scale`}>
-          <span>Heading scale</span>
+        <div className="heading-scale-demo__field">
+          <label htmlFor={`${idBase}-scale`}>Heading scale</label>
           <select
             id={`${idBase}-scale`}
             data-heading-scale-control="scale"
@@ -62,7 +65,28 @@ export default function HeadingScaleDemo() {
               </option>
             ))}
           </select>
-        </label>
+
+          <span className="heading-scale-demo__level-buttons">
+            <button
+              type="button"
+              data-heading-scale-action="remove-level"
+              aria-label="Remove heading level"
+              title="Remove heading level"
+              disabled={levelCount <= minHeadingLevelCount}
+            >
+              -
+            </button>
+            <button
+              type="button"
+              data-heading-scale-action="add-level"
+              aria-label="Add heading level"
+              title="Add heading level"
+              disabled={levelCount >= maxHeadingLevelCount}
+            >
+              +
+            </button>
+          </span>
+        </div>
       </div>
     </section>
   );
