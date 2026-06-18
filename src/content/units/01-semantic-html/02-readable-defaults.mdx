@@ -319,26 +319,28 @@ a:hover {
 }
 ```
 
+<Warning>
+  Avoid vague link text such as: click here, read more, learn more
+</Warning>
+
 <Practice>
   A link should make sense when read away from the text around it.
 </Practice>
 
-Avoid vague link text such as:
+## Lovely Links
 
-- click here
-- read more
-- learn more
+<LinkStylingDemo />
 
 ## Focus Is Part Of The Design
 
 Keyboard users move through interactive elements using focus.
 
-```css
+````css
 :focus-visible {
   outline: 3px solid #f59e0b;
   outline-offset: 0.2rem;
 }
-```
+``
 
 Do not remove outlines just because they look unfamiliar.
 
@@ -347,7 +349,7 @@ Do not remove outlines just because they look unfamiliar.
 *:focus {
   outline: none;
 }
-```
+````
 
 <Warning>
   Removing focus styles can make a page impossible to use without a mouse.

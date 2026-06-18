@@ -3,6 +3,7 @@ import BoxSizingDemo from "../demos/BoxSizingDemo/BoxSizingDemo.jsx";
 import GridExplorer from "../demos/GridExplorer/GridExplorer.jsx";
 import HeadingScaleDemo from "../demos/HeadingScaleDemo/HeadingScaleDemo.jsx";
 import LineHeightDemo from "../demos/LineHeightDemo/LineHeightDemo.jsx";
+import LinkStylingDemo from "../demos/LinkStylingDemo/LinkStylingDemo.jsx";
 import SemanticElementsDemo from "../demos/SemanticElementsDemo/SemanticElementsDemo.jsx";
 import SemanticStructureDemo from "../demos/SemanticStructureDemo/SemanticStructureDemo.jsx";
 import SkeletonReadingDemo from "../demos/SkeletonReadingDemo/SkeletonReadingDemo.jsx";
@@ -29,6 +30,10 @@ const demoDefinitions = Object.freeze([
   {
     ...demoMetadata.find((demo) => demo.name === "LineHeightDemo"),
     component: LineHeightDemo,
+  },
+  {
+    ...demoMetadata.find((demo) => demo.name === "LinkStylingDemo"),
+    component: LinkStylingDemo,
   },
   {
     ...demoMetadata.find((demo) => demo.name === "SemanticElementsDemo"),

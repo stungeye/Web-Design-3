@@ -42,6 +42,13 @@ const demoEnhancers = [
     },
   },
   {
+    selector: "[data-link-styling-demo]",
+    load: async () => {
+      const module = await import("../demos/LinkStylingDemo/linkStylingClient.js");
+      return module.setupLinkStylingDemos;
+    },
+  },
+  {
     selector: "[data-semantic-elements-demo]",
     load: async () => {
       const module = await import("../demos/SemanticElementsDemo/semanticElementsClient.js");

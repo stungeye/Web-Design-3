@@ -29,6 +29,10 @@ export const demoMetadata = Object.freeze([
     title: "Line Height Demo",
   },
   {
+    name: "LinkStylingDemo",
+    title: "Link Styling Demo",
+  },
+  {
     name: "SemanticElementsDemo",
     title: "Semantic Elements Demo",
   },
