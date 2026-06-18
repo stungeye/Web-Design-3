@@ -1,3 +1,5 @@
+import { buildBaseStylesheetPreviewDocument } from "./baseStylesheetModel.js";
+
 export function setupBaseStylesheetDemos(root = document) {
   root.querySelectorAll("[data-base-stylesheet-demo]").forEach((demo) => {
     if (demo.dataset.baseStylesheetReady === "true") {
@@ -13,5 +15,9 @@ export function setupBaseStylesheetDemos(root = document) {
 
 function updateDemo(demo) {
   const control = demo.querySelector('[data-base-stylesheet-control="enabled"]');
-  demo.dataset.baseStyles = control?.checked ? "enabled" : "default";
+  const enabled = Boolean(control?.checked);
+  const preview = demo.querySelector("[data-base-stylesheet-preview]");
+
+  demo.dataset.baseStyles = enabled ? "enabled" : "default";
+  preview?.setAttribute("srcdoc", buildBaseStylesheetPreviewDocument({ enabled }));
 }

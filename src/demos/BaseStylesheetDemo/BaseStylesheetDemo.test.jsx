@@ -7,14 +7,13 @@ describe("BaseStylesheetDemo", () => {
     render(<BaseStylesheetDemo />);
 
     const demo = screen.getByRole("group", { name: "Base stylesheet demo" });
+    const preview = screen.getByTitle("Base stylesheet preview");
 
     expect(demo).toHaveAttribute("data-base-styles", "enabled");
     expect(screen.getByLabelText("Enable A Small Base Stylesheet")).toBeChecked();
-    expect(screen.getByRole("group", { name: "Base stylesheet preview" })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { level: 1, name: "Prairie Garden Visit Guide" }))
-      .toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Review admission details" })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Check availability" })).toBeInTheDocument();
+    expect(preview).toHaveAttribute("data-base-stylesheet-preview");
+    expect(preview.getAttribute("srcdoc")).toContain("Prairie Garden Visit Guide");
+    expect(preview.getAttribute("srcdoc")).toContain("<style>");
     expect(getCodeBlockContaining("box-sizing: border-box;")).toBeInTheDocument();
     expect(getCodeBlockContaining("<main>")).toBeInTheDocument();
   });

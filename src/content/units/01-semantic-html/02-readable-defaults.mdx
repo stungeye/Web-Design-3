@@ -494,15 +494,14 @@ This is a reasonable beginning for a small brochure site:
   line-height: calc(1em + 0.5rem);
 }
 
-body {
+*:not(dialog) {
   margin: 0;
+}
+
+body {
   font-family: system-ui, sans-serif;
   color: #1f2933;
   background-color: #fffdf8;
-}
-
-input, button, textarea, select {
-  font: inherit;
 }
 
 /* Minor Third Scale 1.25x */
@@ -535,8 +534,10 @@ main {
   padding: 2rem;
 }
 
-main > * + * {
-  margin-block-start: 4rem;
+main > * + *,
+article > * + *,
+section > * + * {
+  margin-block-start: 1.25rem;
 }
 ```
 
