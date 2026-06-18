@@ -30,7 +30,8 @@ describe("setupLineHeightDemos", () => {
 function createDemoFixture() {
   return `
     <section data-line-height-demo>
-      <input data-line-height-control="mode" name="line-height" type="radio" value="fixed" checked>
+      <input data-line-height-control="mode" name="line-height" type="radio" value="browserDefault" checked>
+      <input data-line-height-control="mode" name="line-height" type="radio" value="fixed">
       <input data-line-height-control="mode" name="line-height" type="radio" value="calculated">
       <article data-line-height-preview></article>
       <code data-line-height-code="css"></code>

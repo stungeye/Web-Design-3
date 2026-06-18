@@ -1,4 +1,8 @@
 export const lineHeightOptions = Object.freeze({
+  browserDefault: {
+    label: "line-height: 1.2",
+    value: "1.2",
+  },
   fixed: {
     label: "line-height: 1.5",
     value: "1.5",
@@ -10,11 +14,11 @@ export const lineHeightOptions = Object.freeze({
 });
 
 export const defaultLineHeightState = Object.freeze({
-  mode: "fixed",
+  mode: "browserDefault",
 });
 
 export function getLineHeightValue(mode) {
-  return lineHeightOptions[mode]?.value ?? lineHeightOptions.fixed.value;
+  return lineHeightOptions[mode]?.value ?? lineHeightOptions.browserDefault.value;
 }
 
 export function buildLineHeightCss(mode) {
