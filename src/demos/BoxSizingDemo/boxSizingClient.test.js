@@ -38,6 +38,8 @@ describe("setupBoxSizingDemos", () => {
       "--box-sizing": "border-box",
       "--box-padding": "40px",
     });
+    expect(document.querySelector('[data-box-sizing-preview="box"]'))
+      .toHaveAttribute("data-box-sizing-border-width", "12");
     expect(document.querySelector('[data-box-sizing-code="css"]').textContent)
       .toContain("box-sizing: border-box;");
     expect(document.querySelector('[data-box-sizing-code="css"]').textContent)

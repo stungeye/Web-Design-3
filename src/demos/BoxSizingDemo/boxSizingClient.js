@@ -38,6 +38,7 @@ function updateDemo(demo) {
   box.style.setProperty("--box-border-width", formatPx(state.borderWidth));
   box.style.setProperty("--box-sizing", state.boxSizing);
   box.style.setProperty("--box-padding", formatPx(state.padding));
+  box.dataset.boxSizingBorderWidth = String(state.borderWidth);
   setOutput(demo, "border-width", formatPx(state.borderWidth));
   setOutput(demo, "padding", formatPx(state.padding));
   setOutput(demo, "painted-width", formatPx(getPaintedWidth(state)));

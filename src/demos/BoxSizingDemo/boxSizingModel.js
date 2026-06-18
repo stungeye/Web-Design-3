@@ -1,7 +1,7 @@
 export const defaultBoxSizingState = Object.freeze({
   boxSizing: "content-box",
-  borderWidth: 4,
-  padding: 24,
+  borderWidth: 0,
+  padding: 0,
 });
 
 export function formatPx(value) {

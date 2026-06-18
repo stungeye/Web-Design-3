@@ -121,6 +121,11 @@
   width: 220px;
 }
 
+.box-sizing-demo__box[data-box-sizing-border-width="0"] {
+  outline: 1px dashed var(--color-muted);
+  outline-offset: -1px;
+}
+
 .box-sizing-demo__content {
   background: var(--color-surface);
   border: 1px dashed var(--color-muted);

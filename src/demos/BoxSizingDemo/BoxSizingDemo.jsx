@@ -80,6 +80,7 @@ export default function BoxSizingDemo() {
           </div>
           <div
             className="box-sizing-demo__box"
+            data-box-sizing-border-width={borderWidth}
             data-box-sizing-preview="box"
             style={{
               "--box-border-width": formatPx(borderWidth),
