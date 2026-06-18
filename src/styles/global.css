@@ -374,11 +374,19 @@ code {
   background: var(--color-surface);
   border: var(--border-thin);
   border-radius: var(--radius-medium);
+  order: -1;
   padding: var(--space-4);
 }
 
-.module-toc h2 {
+.module-toc summary {
+  color: var(--color-text);
+  cursor: pointer;
   font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.module-toc details[open] summary {
   margin-block-end: var(--space-3);
 }
 
@@ -697,12 +705,11 @@ code {
 @media (min-width: 64rem) {
   .module-notes-layout {
     align-items: start;
-    grid-template-columns: minmax(12rem, 16rem) minmax(0, var(--measure-prose));
+    grid-template-columns: minmax(0, var(--measure-prose)) minmax(12rem, 16rem);
   }
 
   .module-toc {
-    position: sticky;
-    top: var(--space-8);
+    order: 0;
   }
 }
 

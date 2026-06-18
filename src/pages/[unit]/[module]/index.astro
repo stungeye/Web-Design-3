@@ -73,21 +73,23 @@ const notesComponents = createNotesMdxComponents();
   </nav>
 
   <div class="module-notes-layout">
-    <aside class="module-toc" aria-labelledby="module-toc-title">
-      <h2 id="module-toc-title">Contents</h2>
-      <ol>
-        {
-          tableOfContents.map((section) => (
-            <li>
-              <a href={`#${section.id}`}>{section.title}</a>
-            </li>
-          ))
-        }
-      </ol>
-    </aside>
-
     <article id="module-content" class="module-notes" tabindex="-1">
       <ModuleContent components={notesComponents} />
     </article>
+
+    <aside class="module-toc" aria-labelledby="module-toc-title">
+      <details>
+        <summary id="module-toc-title">Contents</summary>
+        <ol>
+          {
+            tableOfContents.map((section) => (
+              <li>
+                <a href={`#${section.id}`}>{section.title}</a>
+              </li>
+            ))
+          }
+        </ol>
+      </details>
+    </aside>
   </div>
 </BaseLayout>
