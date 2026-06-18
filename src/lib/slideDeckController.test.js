@@ -134,6 +134,27 @@ describe("slide deck setup", () => {
     expect(deck.activeIndex).toBe(0);
   });
 
+  it("does not intercept keyboard events from links", () => {
+    document.body.innerHTML = `
+      <main>
+        <div data-slide-source>
+          <h1>Title</h1>
+          <h2>First Section</h2>
+        </div>
+        <a href="/">Course index</a>
+      </main>
+    `;
+
+    const deck = setupSlideDeck(document);
+    const link = document.querySelector("a");
+
+    link.dispatchEvent(
+      new KeyboardEvent("keydown", { key: "ArrowRight", bubbles: true }),
+    );
+
+    expect(deck.activeIndex).toBe(0);
+  });
+
   it("does not intercept keyboard events from focusable separator controls", () => {
     document.body.innerHTML = `
       <main>

@@ -4,6 +4,7 @@ import { createSlidesMdxComponents } from "../../../../components/mdx/createSlid
 import { getCourseIndex } from "../../../../lib/contentDiscovery.js";
 import { getModuleSlidesData } from "../../../../lib/moduleSlides.js";
 import { siteMetadata } from "../../../../lib/siteMetadata.js";
+import { toSitePath } from "../../../../lib/siteUrls.js";
 
 type CourseModule = {
   filePath: string;
@@ -61,6 +62,10 @@ const slidesComponents = createSlidesMdxComponents();
   <a class="skip-link" href="#slide-content">Skip to slide content</a>
 
   <div class="slide-shell" data-expected-slide-count={slideCount}>
+    <a class="slide-home-link" href={toSitePath("/")} aria-label="Return to course index">
+      Index
+    </a>
+
     <div id="slide-content" class="slide-source" data-slide-source tabindex="-1">
       <ModuleContent components={slidesComponents} />
     </div>
