@@ -236,7 +236,8 @@ A2 should answer:
 - Readable typography and spacing
 - Custom CSS
 - Grid for major layout where appropriate
-- Flexbox for navigation, shelves, stacks, or card rows where appropriate
+- Flexbox for navigation and small horizontal groups where appropriate
+- Block flow, parent-controlled spacing, or Flexbox for vertical stacks where appropriate
 - Desktop-width layout targeting laptop/desktop screens
 
 ### Not required
@@ -421,14 +422,16 @@ Students should see that styling starts with readable defaults, not complex layo
 
 ### Focus
 
-- Why semantic HTML styles well
-- Containers and section spacing
-- Grid for page shells
-- Flexbox for nav, shelves, and stacks
+- Turning the A1 plan into a buildable page
+- Project folder setup, linked pages, linked CSS, image folders, and relative paths
+- Carrying forward base styles from Week 2
+- Full-width sections and centered content containers
+- Grid for simple desktop page and section layouts
+- Flexbox for navigation and small horizontal groups
+- Block flow and parent-controlled spacing for vertical stacks
 - Desktop-first layout
 - Fixed desktop target widths without treating the design as one exact screen size
 - Reading mockups as build plans, identifying containers, spacing, layout
-- Project folder setup, including inked pages, linked CSS, image folders, and relative paths
 - A2 expectations
 
 ### In-class activity
@@ -448,18 +451,20 @@ Students should be able to start A2 immediately with structure, base styling, an
 
 ### Focus
 
-- Grid columns
+- Choosing between block flow, Grid, and Flexbox
+- Stack patterns for vertical rhythm
+- Shelf/cluster patterns for horizontal groups
+- Card internals and card rows
 - Card layouts
+- Grid columns
 - Full-width sections
 - Content containers
-- Stack patterns
-- Shelf patterns
 - Visual rhythm
 - When to use Grid vs Flexbox
 
 ### In-class activity
 
-Build three reusable layout patterns:
+Build three reusable layout patterns and explain the layout choice for each:
 
 - Stack
 - Shelf
