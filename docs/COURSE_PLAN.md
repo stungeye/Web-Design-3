@@ -412,31 +412,32 @@ Students should understand that good layout starts with good structure.
 
 ### In-class activity
 
-Apply a small base stylesheet to semantic HTML. Students adjust type, spacing, colour, and image defaults.
+Apply a small base stylesheet to semantic HTML from week 1 activity. Students adjust type, spacing, colour, and image defaults.
 
 ### Purpose
 
 Students should see that styling starts with readable defaults, not complex layouts.
 
-## Week 3 — Start A2 with desktop layout basics
+## Week 3 — Building a Page Shell
 
 ### Focus
 
-- Turning the A1 plan into a buildable page
-- Project folder setup, linked pages, linked CSS, image folders, and relative paths
-- Carrying forward base styles from Week 2
-- Full-width sections and centered content containers
-- Grid for simple desktop page and section layouts
-- Flexbox for navigation and small horizontal groups
-- Block flow and parent-controlled spacing for vertical stacks
-- Desktop-first layout
-- Fixed desktop target widths without treating the design as one exact screen size
+- Translating a mockup into major page regions
 - Reading mockups as build plans, identifying containers, spacing, layout
+- Carrying forward base styles from Week 2
+- Full-width sections
+- Centred content containers
+- Readable content widths
+- Header, hero, main content sections, and footer
+- Simple page grid thinking
+- grid-template-areas as a visual planning/demo tool
+- Full-bleed sections as one useful layout recipe
+- Basic A2 setup: folders, linked CSS, image paths, and starter files
 - A2 expectations
 
 ### In-class activity
 
-Build a very simple brochure page shell from mockup with a header/nav, hero, main content section, card row, and footer. Proper folder/file setup.
+Build a very simple brochure page shell from base style markup from week 2 activity. Sketch a quick mockup and then implement header/nav, hero, main content section, and footer. Proper folder/file setup.
 
 ### Assignment
 
@@ -445,34 +446,32 @@ A2 assigned.
 
 ### Purpose
 
-Students should be able to start A2 immediately with structure, base styling, and a basic layout approach.
+Students should understand how to turn a visual plan into a simple, buildable page structure before styling individual sections in detail.
 
-## Week 4 — Practise reusable layout patterns
+## Week 4 — Build sections with simple layout patterns
 
 ### Focus
 
-- Choosing between block flow, Grid, and Flexbox
-- Stack patterns for vertical rhythm
-- Shelf/cluster patterns for horizontal groups
-- Card internals and card rows
-- Card layouts
-- Grid columns
-- Full-width sections
-- Content containers
-- Visual rhythm
-- When to use Grid vs Flexbox
+- Stack pattern for vertical spacing
+- Cluster/shelf pattern for navigation, buttons, and small horizontal groups
+- Simple Grid pattern for cards and columns
+- Choosing between normal flow, Flexbox, and Grid
+- Using gap instead of scattered margins
+- Parent-controlled spacing
+- Reusing simple layout patterns across multiple sections
+- Avoiding one-off CSS for every part of the page
 
 ### In-class activity
 
-Build three reusable layout patterns and explain the layout choice for each:
+Take base shell layout of site from week three activity. Add:
 
-- Stack
-- Shelf
-- Card grid
+- a stacked content section
+- a header/nav or button cluster
+- a simple card grid
 
 ### Purpose
 
-Students should gain enough layout practice to make A2 achievable.
+Students should leave with a small set of repeatable layout tools they can apply without overcomplicating a site build.
 
 ## Week 5 — A2 checkpoint and troubleshooting
 
