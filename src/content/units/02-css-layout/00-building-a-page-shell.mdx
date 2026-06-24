@@ -1,0 +1,545 @@
+# Building A Page Shell
+
+A page shell is the simple structure that holds the whole design together.
+
+This week we turn an existing content plan and mockup into a buildable page shell before styling individual sections in detail.
+
+<Note>
+  A good shell makes the page easier to build because the major regions,
+  containers, spacing, and file paths are already clear.
+</Note>
+
+## From Visual Plan To Build Plan
+
+Before writing detailed section styles, look to your mockup for:
+
+- major page regions
+- full-width bands
+- centered content containers
+- repeated spacing
+- navigation placement
+- image areas
+- the main reading path
+
+<Practice>
+  Read the mockup from large structures to small details. Do not start with
+  button colours, card shadows, or tiny spacing adjustments.
+</Practice>
+
+## Carry Forward The Base Styles
+
+Keep the Week 2 base styles that make the whole site readable and usable:
+
+- `box-sizing`
+- body typography, colour, and line height
+- heading scale
+- link and focus styles
+- safe image and media defaults
+
+## Remove Basic `<main>` Layout
+
+Some Week 2 layout-like defaults may need to change.
+
+```css
+main {
+  max-width: 70ch;
+  margin-inline: auto;
+  padding: 2rem;
+}
+```
+
+That rule was useful for a simple readable page. A brochure shell often needs full-width sections, so the centering usually moves from `main` to a reusable `.container`.
+
+```css
+.container {
+  /* When less than 70rem available leave 1rem margin on either side. */
+  width: min(100% - 2rem, 70rem);
+
+  /* Horizontally centre the container. */
+  margin-inline: auto;
+}
+```
+
+## Revise The Vertical Rhythm
+
+The Week 2 owl selector may also need a narrower job.
+
+```css
+main > * + *,
+article > * + *,
+section > * + * {
+  margin-block-start: 1.25rem;
+}
+```
+
+That was helpful for simple reading flow, but it can fight a shell that uses full-width sections and containers. For example, if every direct child of `main` gets the same margin, section backgrounds may create awkward gaps between bands.
+
+Instead, apply rhythm inside content groups and use shell selectors for section spacing.
+
+```css
+.flow > * + * {
+  margin-block-start: 1.25rem;
+}
+```
+
+## Combing `.container` and `.flow`
+
+We can now impose a centered layout with a max-width and consistent virtual flow:
+
+```html
+<section class="container flow">
+  <h2>Lakefront activities</h2>
+  <p>Walk the pier, visit the beach, and watch the harbour.</p>
+</section>
+```
+
+## Read The Mockup In Layers
+
+When you look at the mockup, separate the design into layers.
+
+Look for:
+
+- full-width bands
+- centered containers
+- major columns or sidebars
+- section spacing
+- section-specific details
+
+## Page Shell In HTML
+
+{/* prettier-ignore */}
+```html
+<body>
+  <header> <!-- header can be full-bleed width -->
+    <div class="container header-layout">
+      <a class="site-logo" href="index.html">Visit Gimli</a>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="things-to-do.html">Things to do</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container flow">
+        <h1>Plan a lakeside weekend in Gimli</h1>
+        <p>Explore beaches, food, festivals, and local history.</p>
+      </div>
+    </section>
+
+    <section class="visit-intro">
+      <div class="container flow">
+        <h2>Why visit Gimli?</h2>
+        <p>
+          Gimli is a small Interlake town with lakefront views and local
+          culture.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Visit Gimli student project</p>
+    </div>
+  </footer>
+</body>
+```
+
+## Why The Container Is Inside The Section
+
+A common design pattern uses full-width sections with centered inner containers.
+
+```html
+<section class="hero">
+  <div class="container">
+    <h1>Plan a lakeside weekend in Gimli</h1>
+    <p>Explore beaches, food, festivals, and local history.</p>
+  </div>
+</section>
+```
+
+The outer section can control the full-width background. The inner container controls readable width and alignment.
+
+<Note>
+  The container is a layout helper, not a semantic element. The meaningful
+  region is still the section.
+</Note>
+
+## Full-Width Sections
+
+Full-width sections are useful when the design has horizontal bands:
+
+- a header bar
+- a hero background
+- a featured content band
+- a footer
+
+```css
+.hero {
+  background-color: #e0f2fe;
+  padding-block: 4rem;
+}
+
+body > footer {
+  background-color: #1f2937;
+  color: #ffffff;
+  padding-block: 2rem;
+}
+```
+
+These rules style the full band, not the text width inside it.
+
+## Name Classes By Their Job
+
+Do not add classes just to repeat the element name.
+
+```html
+<!-- Less useful -->
+<header class="site-header">...</header>
+<footer class="site-footer">...</footer>
+<section class="section">...</section>
+```
+
+If there is only one page header and one page footer, the element selectors are clear enough.
+
+```css
+body > header {
+  padding-block: 1rem;
+}
+
+body > footer {
+  padding-block: 2rem;
+}
+```
+
+Add a class when it explains a specific role or layout job.
+
+```html
+<section class="hero">...</section>
+<section class="lakefront-activities">...</section>
+<div class="container">...</div>
+<div class="header-layout">...</div>
+```
+
+The class name should help someone understand why the hook exists.
+
+## Demo Placeholder: Mockup To Regions
+
+A future interactive demo could show a simple mockup beside a page outline. Students would click or toggle the header, hero, main sections, containers, and footer to see how visual regions become HTML regions.
+
+For now, use a printed mockup, screenshot, or quick sketch and label the major regions by hand.
+
+## Simple Page Grid Thinking
+
+You do not need a complex grid for every page shell.
+
+At the shell level, grid thinking means noticing relationships:
+
+- What spans the full page?
+- What is centered?
+- Which regions stack vertically?
+- Which regions need columns now?
+- Which regions repeat across both pages?
+
+This thinking can happen before choosing the final CSS layout method.
+
+## Grid Shell Recipe: Sticky Footer
+
+Grid becomes useful when the shell needs behaviour ordinary block flow does not provide.
+
+A common example is a footer that sits at the bottom of the viewport on short pages without overlapping content.
+
+```css
+body {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+```
+
+```text
+row 1: header takes the space it needs
+row 2: main grows to fill leftover space
+row 3: footer takes the space it needs
+```
+
+This is still simple, but it solves a real shell problem.
+
+## Grid Shell Recipe: Sidebar Page
+
+Some desktop pages need a main content area and a related sidebar.
+
+```html
+<main class="page-layout container">
+  <article>
+    <h1>Plan your visit</h1>
+    <p>Start with the attractions, routes, and seasonal notes.</p>
+  </article>
+
+  <aside>
+    <h2>Visitor details</h2>
+    <p>Hours, parking, and accessibility notes.</p>
+  </aside>
+</main>
+```
+
+```css
+.page-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 18rem;
+  gap: 3rem;
+  align-items: start;
+}
+```
+
+This is a page-shell decision because it controls the relationship between large regions, not the details inside each region.
+
+<Warning>
+  Do not use a sidebar layout just because Grid is available. Use it when the
+  content genuinely has primary and secondary regions.
+</Warning>
+
+## Grid Shell Recipe: Named Areas
+
+`grid-template-areas` is useful when the shell has named regions in more than one column.
+
+```css
+.home-shell {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-areas:
+    "hero hero"
+    "intro details"
+    "feature feature";
+  gap: 2rem;
+}
+
+.hero {
+  grid-area: hero;
+}
+
+.intro {
+  grid-area: intro;
+}
+
+.details {
+  grid-area: details;
+}
+
+.feature {
+  grid-area: feature;
+}
+```
+
+```text
+hero    hero
+intro   details
+feature feature
+```
+
+This gives us something block flow cannot: one section can span both columns while the next row splits into primary and secondary content.
+
+<Wait>
+  We will use Grid and Flexbox more directly when individual sections need
+  columns, cards, or horizontal groups.
+</Wait>
+
+## Demo Placeholder: Page Areas
+
+A future interactive demo could let students switch between block flow, sticky-footer grid, sidebar grid, and named-area page shells. The goal would be choosing the simplest shell that matches the mockup.
+
+Until then, sketch the page as named areas and decide whether Grid solves a real shell problem.
+
+## Header And Navigation Shell
+
+The header usually needs a site identity and navigation.
+
+```html
+<header>
+  <div class="container header-layout">
+    <a class="site-logo" href="index.html">Visit Gimli</a>
+    <nav aria-label="Primary navigation">
+      <ul class="nav-list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="things-to-do.html">Things to do</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+```
+
+```css
+.header-layout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+```
+
+The `header` element identifies the page region. The `.header-layout` class identifies the layout job inside that region.
+
+## Hero Shell
+
+A hero introduces the page. Since the content structure is already planned, the shell decision is mostly about placement, width, and spacing.
+
+```html
+<section class="hero">
+  <div class="container flow">
+    <p class="eyebrow">Manitoba Interlake</p>
+    <h1>Plan a lakeside weekend in Gimli</h1>
+    <p>Explore beaches, food, festivals, and local history.</p>
+    <a class="button" href="things-to-do.html">Browse things to do</a>
+  </div>
+</section>
+```
+
+The `.hero` class styles the full-width section. The inner `.container` exists only because the content needs a centered width inside that full-width band.
+
+## Main Content Sections
+
+Each major content section already has a purpose from the content plan. In the shell pass, give those sections consistent spacing and alignment.
+
+```html
+<section class="lakefront-activities">
+  <div class="container">
+    <h2>Lakefront activities</h2>
+    <p>Walk the pier, visit the beach, and watch the harbour.</p>
+  </div>
+</section>
+```
+
+If the section will later become cards or columns, the shell can still start with the outer section and container.
+
+<Practice>
+  Let normal flow handle simple text sections. Save Grid and Flexbox for real
+  relationships: columns, rows, alignment, and repeated groups.
+</Practice>
+
+## Footer Shell
+
+The footer closes the page and often contains practical site information.
+
+```html
+<footer>
+  <div class="container">
+    <p>Student project for Web Design 3.</p>
+    <p>Images and text sources credited in the project notes.</p>
+  </div>
+</footer>
+```
+
+Footers should not become junk drawers. Include information that helps users understand the site or find related links.
+
+## Starter Project Setup
+
+Before building A2, set up the project clearly.
+
+```text
+a2-brochure-site/
+  index.html
+  things-to-do.html
+  css/
+    styles.css
+  images/
+    hero-gimli.jpg
+    pier.jpg
+    festival.jpg
+```
+
+Use simple lowercase file and folder names. Avoid spaces in file names.
+
+## Link CSS And Images Carefully
+
+Connect the stylesheet from each HTML page.
+
+```html
+<link rel="stylesheet" href="css/styles.css" />
+```
+
+Use image paths that match the real folder structure.
+
+```html
+<img
+  src="images/pier.jpg"
+  alt="People walking along the Gimli pier beside Lake Winnipeg"
+/>
+```
+
+<Warning>
+  Broken CSS and image paths are usually folder problems. Check the file
+  location before rewriting working HTML.
+</Warning>
+
+## A2 Build Starting Point
+
+For Assignment 2, your first build goal is a working desktop shell:
+
+- both required pages exist
+- CSS is linked
+- images load
+- header and navigation appear on both pages
+- footer appears on both pages
+- base styles are present
+- containers and major spacing are started
+- any page-level Grid is solving a visible shell problem
+
+This is enough to begin detailed section layout.
+
+## In-Class Page Shell Task
+
+Start with your A1 plan and the base stylesheet from Week 2.
+
+Build a simple brochure page shell:
+
+1. Create the project folder, HTML file, CSS folder, and image folder.
+2. Link the stylesheet.
+3. Add base CSS from Week 2.
+4. Add a header with site name and navigation.
+5. Add the planned hero section.
+6. Add the planned main content sections.
+7. Add a footer.
+8. Add a shared `.container` rule.
+9. Add full-width section backgrounds or spacing where useful.
+10. Choose one shell layout method: normal flow, sticky-footer grid, sidebar grid, or named-area grid.
+
+## Assignment Connection
+
+Assignment 1 is due this week. Assignment 2 begins from that plan.
+
+Use your A1 work to answer:
+
+- Which visual regions need to become full-width bands?
+- Which content needs a centered container?
+- Which pages can use normal flow?
+- Which pages need a shell grid?
+- Which regions repeat on both pages?
+- What folder structure will keep the build organized?
+
+<Note>
+  A2 is not asking for a fully responsive site. The focus is a clean,
+  desktop-focused brochure build with semantic HTML, readable CSS, and
+  intentional layout.
+</Note>
+
+## Week 3 Check
+
+By the end of this week, you should be able to:
+
+- translate a visual plan into major page regions
+- identify full-width sections and centered containers
+- create a simple project folder structure
+- link CSS and image paths correctly
+- build a header, hero, main section sequence, and footer
+- use Grid for simple page-shell problems
+- explain when normal flow is enough for the page shell
+- prepare an A2 starter build from your A1 plan
+
+<Question>
+  Before styling the details, can someone else look at your shell and understand
+  the page structure you are building?
+</Question>
