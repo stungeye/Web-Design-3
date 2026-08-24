@@ -17,10 +17,10 @@ The course should not become a broad course on SEO, hosting, domains, JavaScript
 The course is organized around a simple build process:
 
 1. Structure the content.
-2. Style the page with readable defaults.
-3. Create intentional layouts.
-4. Plan responsive behaviour.
-5. Build responsive sections.
+2. Mockup the design.
+3. Style the page with readable defaults.
+4. Create intentional layouts.
+5. Add responsive fluidity.
 6. Organize the CSS.
 7. Test the site.
 8. Publish a working static version.
