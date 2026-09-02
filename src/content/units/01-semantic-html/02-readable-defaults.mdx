@@ -44,7 +44,7 @@ Browsers already give HTML some readable behaviour:
 - buttons can be focused and activated
 - images keep their natural dimensions
 
-Those defaults are useful, but they are not a finished design.
+Those defaults are useful, but they are not a finished base.
 
 ## A Base Stylesheet Has A Job
 
@@ -59,19 +59,17 @@ It usually handles:
 - link and focus styles
 - image and media behaviour
 
-This layer is not where we solve the full page layout.
-
 <Warning>
-  A reset or base style should not erase useful behaviour unless you
+  A reset or base style should not erase useful default styling unless you
   intentionally replace it.
 </Warning>
+
 ## Reset Less Than You Replace
 
 Modern CSS resets are useful because they smooth out awkward defaults, not because they remove every browser style.
 
 A good base stylesheet should:
 
-- keep useful semantic behaviour
 - remove defaults that make layout awkward or unpredictable
 - improve readability
 - give media and form controls nicer defaults
@@ -98,11 +96,6 @@ The first common base rule changes how width and height are calculated.
 With `border-box`, an element's declared width includes its padding and border. This makes layout math easier once Grid and Flexbox enter the project.
 
 <BoxSizingDemo />
-
-<Note>
-  `box-sizing` does not create layout. It makes future layout rules more
-  predictable.
-</Note>
 
 ## Body Defaults And Readable Type
 
@@ -167,10 +160,10 @@ These rules do three different jobs:
 
 The `ch` unit can help limit text-heavy content because it is based on the width of the `0` character in the current font.
 
-<Warning>
-  Do not use one `main` rule as the final layout for every site. It is a
-  readable starting point for simple pages, not a full layout system.
-</Warning>
+<Note>
+  The `margin-inline` property sets the left and right margins of an element,
+  while `margin-block` sets top and bottom.
+</Note>
 
 ## Line Height Choices
 
@@ -187,9 +180,9 @@ This formula combines two useful relationships:
 - `1em` follows the current element's font size
 - `0.5rem` adds breathing room based on the root font size
 
-The result is flexible. Smaller text gets enough extra space to read comfortably. Larger headings get less extra space relative to their size, so they stay visually grouped.
+The result is flexible. Smaller text gets enough extra space to read comfortably. Larger headings get less extra space relative to their size, so they stay visually grouped across line breaks.
 
-If the base font size is `16px`, a `16px` paragraph gets a line height of about `24px`.
+If the base font size is `16px`, a `16px` paragraph gets a line height of `24px`.
 
 ## Calc() Line Height Demo
 
@@ -226,10 +219,6 @@ Common scales include:
 ## Header Scaling
 
 <HeadingScaleDemo />
-
-<Practice>
-  Do not choose heading levels because you want a certain visual size.
-</Practice>
 
 ## Reset Margins Carefully
 
@@ -335,12 +324,12 @@ a:hover {
 
 Keyboard users move through interactive elements using focus.
 
-````css
+```css
 :focus-visible {
   outline: 3px solid #f59e0b;
   outline-offset: 0.2rem;
 }
-````
+```
 
 Do not remove outlines just because they look unfamiliar.
 
@@ -349,7 +338,7 @@ Do not remove outlines just because they look unfamiliar.
 *:focus {
   outline: none;
 }
-````
+```
 
 <Warning>
   Removing focus styles can make a page impossible to use without a mouse.
@@ -367,11 +356,9 @@ svg,
 video {
   display: block;
   max-width: 100%;
-  height: auto;
+  height: auto; /* Preserves aspect ratio. */
 }
 ```
-
-This rule does not decide the final image layout. It makes media safer by default.
 
 ## Alt Text Is A Content Decision
 
